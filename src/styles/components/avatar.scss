@@ -1,0 +1,37 @@
+.avatar {
+	display: flex;
+	align-items: center;
+
+	padding: 1rem;
+
+	&-name {
+		margin-bottom: 0.3rem;
+
+		p {
+			font-family: var(--font-family-secondary);
+			font-weight: 600;
+			color: var(--sand);
+		}
+	}
+
+	&-cash {
+		p {
+			font-size: 0.8rem;
+			color: var(--sand);
+
+			sup {
+				font-size: 0.6rem;
+				text-transform: uppercase;
+			}
+		}
+	}
+
+	&-picture {
+		width: 40px;
+		height: 40px;
+		margin-right: 0.75rem;
+
+		background-color: var(--sand);
+		border-radius: 50%;
+	}
+}

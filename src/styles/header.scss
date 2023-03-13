@@ -1,0 +1,100 @@
+header {
+	position: fixed;
+	width: var(--header-width);
+	height: 100%;
+	box-shadow: 3px 0px 10px -5px rgba(65, 71, 84, 0.4);
+	background-color: var(--charcoal);
+
+	.menu {
+		margin-top: 1rem;
+		padding: 1rem;
+
+		ul {
+			li {
+				margin-bottom: 0.75rem;
+
+				a {
+					display: flex;
+					align-items: center;
+					padding: 0.5rem 0.75rem;
+					border-radius: 5px;
+					text-decoration: none;
+
+					&.active {
+						position: relative;
+
+						span {
+							color: var(--sand);
+						}
+
+						svg {
+							fill: var(--sand);
+						}
+
+						&::after {
+							content: '';
+							position: absolute;
+							left: -1rem;
+							height: 100%;
+							width: 3px;
+							background-color: var(--sand);
+						}
+					}
+				}
+
+				span {
+					font-size: 0.85rem;
+					color: var(--blue);
+					font-family: var(--font-family-secondary);
+				}
+
+				svg {
+					fill: var(--blue);
+					margin-right: 0.5rem;
+				}
+
+				&:hover {
+					transition: all ease-out 200ms;
+
+					a {
+						background-color: var(--charcoal);
+
+						span {
+							color: var(--sand);
+						}
+
+						svg {
+							fill: var(--sand);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.logout {
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+
+		button {
+			background-color: var(--charcoal);
+			text-align: left;
+			width: 100%;
+			padding: 0.75rem 1.75rem;
+			font-size: 12px;
+			text-transform: uppercase;
+			cursor: pointer;
+			color: var(--blue);
+
+			border: none;
+			display: flex;
+			align-items: center;
+
+			svg {
+				fill: var(--blue);
+				margin-right: 0.5rem;
+			}
+		}
+	}
+}

@@ -1,0 +1,36 @@
+body {
+	--font-family-main: 'Oswald', sans-serif;
+	--font-family-secondary: 'Outfit', sans-serif;
+
+	background-color: #efefef;
+	color: #1c1c1e;
+}
+
+header,
+footer {
+}
+
+.main-wrapper {
+	width: 100%;
+	height: 100%;
+	display: flex;
+}
+
+.main-content {
+	width: 100%;
+	margin-left: var(--header-width);
+}
+
+h1,
+h2,
+h3 {
+	font-family: var(--font-family-secondary);
+}
+
+p,
+ul,
+li,
+a,
+span {
+	font-family: var(--font-family-main);
+}

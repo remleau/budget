@@ -1,0 +1,37 @@
+.form {
+	p {
+		text-transform: uppercase;
+		font-weight: 600;
+		padding-bottom: 0.5rem;
+	}
+
+	&-field {
+		display: block;
+		margin-bottom: 1.25rem;
+
+		&-content {
+			input {
+				width: 100%;
+				border: none;
+				padding: 0.5rem 1rem;
+				border-bottom: 1px solid var(--charcoal);
+				box-sizing: border-box;
+
+				&:focus {
+					outline: none !important;
+					border-bottom: 1px solid var(--gray);
+					box-shadow: 0px 0px 10px -5px rgba(65, 71, 84, 0.4);
+				}
+			}
+		}
+	}
+
+	&-actions {
+		display: block;
+		margin-top: 1rem;
+
+		button {
+			padding: 0.5rem 1.5rem;
+		}
+	}
+}
