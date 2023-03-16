@@ -20,6 +20,18 @@ function useCategories() {
 		}
 	}, []);
 
+	const updateCategorie = useCallback(async (id, values) => {
+		try {
+			const result = await pb
+				.collection("categories")
+				.update(id, { ...values });
+
+			return result;
+		} catch (error) {
+			console.log("Error:", error);
+		}
+	}, []);
+
 	const getCategories = useCallback(async () => {
 		try {
 			const result = await pb.collection("categories").getFullList(
@@ -40,7 +52,7 @@ function useCategories() {
 	}, []);
 
 	return useMemo(() => {
-		return { addCategorie, getCategories, categories };
+		return { addCategorie, updateCategorie, getCategories, categories };
 	}, [categories]);
 }
 

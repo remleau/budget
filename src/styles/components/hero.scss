@@ -43,6 +43,7 @@
 		a {
 			font-size: 0.8rem;
 			color: var(--sand);
+			cursor: pointer;
 
 			display: inline-flex;
 			align-items: center;
@@ -65,8 +66,4 @@
 		height: 100%;
 		background-color: rgba(65, 71, 84, 0.8);
 	}
-}
-
-.content {
-	padding: 2rem 10rem;
 }

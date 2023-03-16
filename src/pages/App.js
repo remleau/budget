@@ -10,7 +10,8 @@ import Home from "./Home";
 import Login from "./Login";
 import Categories from "./Categories";
 import Categorie from "./Categorie";
-import AddCategorie from "./AddCategories";
+import AddCategorie from "./AddCategorie";
+import EditCategorie from "./EditCategorie";
 
 import ToastNotification from "../components/ToastNotification";
 
@@ -30,6 +31,7 @@ function App() {
 					<Route path={ROUTES.CATEGORIES} element={<Categories />} />
 					<Route path={ROUTES.CATEGORIE} element={<Categorie />} />
 					<Route path={ROUTES.ADDCATEGORIE} element={<AddCategorie />} />
+					<Route path={ROUTES.EDITCATEGORIE} element={<EditCategorie />} />
 				</Route>
 			</Routes>
 			<ToastNotification />

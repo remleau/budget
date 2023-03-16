@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { NavLink, useParams } from "react-router-dom";
 
+import { ROUTES } from "../utils/Routes";
 import useCategories from "../hooks/useCategories";
 
 import DynamicIcon from "../components/DynamicIcon";
@@ -33,14 +34,14 @@ function PageCategorie() {
 							</h1>
 						</div>
 						<div className="hero-actions">
-							<NavLink to={"/edit"}>
+							<NavLink
+								to={ROUTES.EDITCATEGORIE.replace(
+									":id",
+									singleCategorie.id.toString()
+								)}
+							>
 								<DynamicIcon size={18} name="CiPen" />
 								Edit {singleCategorie.name} categrorie
-							</NavLink>
-
-							<NavLink to={"/delete"}>
-								<DynamicIcon size={18} name="CiTrash" />
-								Delete {singleCategorie.name} categrorie
 							</NavLink>
 						</div>
 						<div className="overlay"></div>

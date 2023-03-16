@@ -11,6 +11,7 @@ function Header() {
 	const { logout, user } = useGlobalContext();
 
 	const isAddCategoriePage = useMatch(ROUTES.ADDCATEGORIE);
+	const isEditCategoriePage = useMatch(ROUTES.EDITCATEGORIE);
 	const isSingleCategoriePage = useMatch(ROUTES.CATEGORIE);
 
 	return (
@@ -44,7 +45,11 @@ function Header() {
 						<NavLink
 							to={ROUTES.CATEGORIES}
 							className={
-								isAddCategoriePage || isSingleCategoriePage ? "active" : null
+								isAddCategoriePage ||
+								isSingleCategoriePage ||
+								isEditCategoriePage
+									? "active"
+									: null
 							}
 						>
 							<CiFolderOn size={18} />

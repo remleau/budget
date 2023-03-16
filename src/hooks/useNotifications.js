@@ -27,11 +27,23 @@ function useNotifications() {
 
 			switch (data?.collectionName) {
 				case "categories":
-					setNotifications(() => (
-						<NavLink to={ROUTES.CATEGORIE.replace(":id", data?.id.toString())}>
-							<div>Categorie {data?.name} added</div>
-						</NavLink>
-					));
+					if (method === "PATCH") {
+						setNotifications(() => (
+							<NavLink
+								to={ROUTES.CATEGORIE.replace(":id", data?.id.toString())}
+							>
+								<div>Categorie {data?.name} updated</div>
+							</NavLink>
+						));
+					} else {
+						setNotifications(() => (
+							<NavLink
+								to={ROUTES.CATEGORIE.replace(":id", data?.id.toString())}
+							>
+								<div>Categorie {data?.name} added</div>
+							</NavLink>
+						));
+					}
 					break;
 				case "users":
 					if (method === "PATCH")
