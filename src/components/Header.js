@@ -1,14 +1,17 @@
-import React, { memo, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { memo } from "react";
+import { NavLink, useMatch } from "react-router-dom";
 
-import { ROUTES } from '../utils/Routes';
-import { useGlobalContext } from '../utils/GlobalProvider';
+import { ROUTES } from "../utils/Routes";
+import { useGlobalContext } from "../utils/GlobalProvider";
 
-import Avatar from './Avatar';
-import { CiBank, CiVault, CiFolderOn, CiUser, CiPlug1 } from 'react-icons/ci';
+import Avatar from "./Avatar";
+import { CiBank, CiVault, CiFolderOn, CiUser, CiPlug1 } from "react-icons/ci";
 
 function Header() {
 	const { logout, user } = useGlobalContext();
+
+	const isAddCategoriePage = useMatch(ROUTES.ADDCATEGORIE);
+	const isSingleCategoriePage = useMatch(ROUTES.CATEGORIE);
 
 	return (
 		<header>
@@ -24,13 +27,6 @@ function Header() {
 					</li>
 
 					<li>
-						<NavLink to={ROUTES.BUDGETS}>
-							<CiVault size={18} />
-							<span>Budgets</span>
-						</NavLink>
-					</li>
-
-					<li>
 						<NavLink to={ROUTES.STOCKS}>
 							<CiBank size={18} />
 							<span>Stocks</span>
@@ -38,7 +34,19 @@ function Header() {
 					</li>
 
 					<li>
-						<NavLink to={ROUTES.CATEGORIES}>
+						<NavLink to={ROUTES.EXPENSES}>
+							<CiVault size={18} />
+							<span>Expenses</span>
+						</NavLink>
+					</li>
+
+					<li>
+						<NavLink
+							to={ROUTES.CATEGORIES}
+							className={
+								isAddCategoriePage || isSingleCategoriePage ? "active" : null
+							}
+						>
 							<CiFolderOn size={18} />
 							<span>Categories</span>
 						</NavLink>

@@ -1,0 +1,54 @@
+import { useMemo, useCallback, useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+
+import { ROUTES } from "../utils/Routes";
+import { useGlobalContext } from "../utils/GlobalProvider";
+
+function useNotifications() {
+	const { pb } = useGlobalContext();
+
+	const [method, setMethod] = useState(null);
+	const [notifications, setNotifications] = useState(null);
+	const [formError, setFormError] = useState(null);
+
+	useEffect(() => {
+		pb.beforeSend = function (url, options) {
+			setNotifications(null);
+			setMethod(options.method);
+			return { url, options };
+		};
+
+		pb.afterSend = function (response, data) {
+			if (response.status !== 200) {
+				setNotifications(() => <div>{data?.message}</div>);
+			}
+
+			console.log(method, data);
+
+			switch (data?.collectionName) {
+				case "categories":
+					setNotifications(() => (
+						<NavLink to={ROUTES.CATEGORIE.replace(":id", data?.id.toString())}>
+							<div>Categorie {data?.name} added</div>
+						</NavLink>
+					));
+					break;
+				case "users":
+					if (method === "PATCH")
+						setNotifications(() => <div>Updated account</div>);
+					break;
+
+				default:
+					break;
+			}
+
+			return data;
+		};
+	}, [method, notifications]);
+
+	return useMemo(() => {
+		return notifications;
+	});
+}
+
+export default useNotifications;

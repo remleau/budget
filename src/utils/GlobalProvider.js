@@ -5,15 +5,15 @@ import {
 	useState,
 	useMemo,
 	useCallback,
-} from 'react';
-import PocketBase from 'pocketbase';
-import { useInterval } from 'usehooks-ts';
-import jwtDecode from 'jwt-decode';
-import ms from 'ms';
+} from "react";
+import PocketBase from "pocketbase";
+import { useInterval } from "usehooks-ts";
+import jwtDecode from "jwt-decode";
+import ms from "ms";
 
-const BASE_URL = 'http://127.0.0.1:8090';
-const fiveMinutesInMs = ms('5 minutes');
-const twoMinutesInMs = ms('1 minutes');
+const BASE_URL = "http://127.0.0.1:8090";
+const fiveMinutesInMs = ms("5 minutes");
+const twoMinutesInMs = ms("1 minutes");
 
 export const GlobalContext = createContext();
 
@@ -36,12 +36,12 @@ export const GlobalProvider = ({ children }) => {
 
 	const register = useCallback(async (email, password) => {
 		return await pb
-			.collection('users')
+			.collection("users")
 			.create({ email, password, passwordConfirm: password });
 	}, []);
 
 	const login = useCallback(async (email, password) => {
-		return await pb.collection('users').authWithPassword(email, password);
+		return await pb.collection("users").authWithPassword(email, password);
 	}, []);
 
 	const logout = useCallback(() => {
@@ -49,7 +49,7 @@ export const GlobalProvider = ({ children }) => {
 	}, []);
 
 	const update_user = useCallback(async (values) => {
-		return await pb.collection('users').update(user.id, {
+		return await pb.collection("users").update(user.id, {
 			...values,
 		});
 	}, []);
@@ -61,7 +61,7 @@ export const GlobalProvider = ({ children }) => {
 		const expirationWithBuffer = (decoded.exp + fiveMinutesInMs) / 1000;
 
 		if (tokenExpiration < expirationWithBuffer) {
-			await pb.collection('users').authRefresh();
+			await pb.collection("users").authRefresh();
 		}
 	}, [token]);
 

@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 
 function Footer() {
-	return <footer>footer</footer>;
+	return <footer></footer>;
 }
 
 export default memo(Footer);

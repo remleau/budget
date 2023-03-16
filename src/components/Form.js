@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState } from 'react';
+import React from "react";
+import { useState } from "react";
 
 export const Input = ({
 	onChange,
@@ -11,10 +11,16 @@ export const Input = ({
 	disabled,
 	placeholder,
 	label,
+	instruction,
 }) => {
 	return (
 		<label htmlFor="" className="form-field">
-			<p>{label}</p>
+			<p>
+				{label}
+				{instruction && (
+					<span className="form-field-instruction">{instruction}</span>
+				)}
+			</p>
 			<div className="form-field-content">
 				<input
 					type={type}
@@ -52,7 +58,7 @@ export const ImportFiles = ({
 		<React.Fragment>
 			<div className="import-field">
 				<p>
-					Import files here{' '}
+					Import files here{" "}
 					{filesName &&
 						Object.values(filesName)?.map((name, i) => {
 							return (
@@ -84,7 +90,7 @@ export const ImportFiles = ({
 					multiple
 					disabled={disabled}
 					onChange={(event) => {
-						formik.setFieldValue('files', event.currentTarget.files);
+						formik.setFieldValue("files", event.currentTarget.files);
 						setFilesName(event.currentTarget.files);
 					}}
 				/>

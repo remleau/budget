@@ -3,17 +3,26 @@
 		text-transform: uppercase;
 		font-weight: 600;
 		padding-bottom: 0.5rem;
+		color: var(--charcoal);
 	}
 
 	&-field {
 		display: block;
 		margin-bottom: 1.25rem;
 
+		&-instruction {
+			margin-left: 0.75rem;
+			font-size: 0.75rem;
+			font-weight: 400;
+			font-style: italic;
+			font-family: var(--font-family-secondary);
+		}
+
 		&-content {
 			input {
 				width: 100%;
 				border: none;
-				padding: 0.5rem 1rem;
+				padding: 0.75rem 1rem;
 				border-bottom: 1px solid var(--charcoal);
 				box-sizing: border-box;
 
@@ -23,6 +32,11 @@
 					box-shadow: 0px 0px 10px -5px rgba(65, 71, 84, 0.4);
 				}
 			}
+		}
+
+		&-error {
+			margin-top: 0.25rem;
+			font-size: 0.85rem;
 		}
 	}
 

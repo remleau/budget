@@ -1,0 +1,36 @@
+.toast {
+	&-notification {
+		z-index: 10;
+		position: fixed;
+		bottom: 1.5vw;
+		left: 50%;
+		transform: translateX(-50%);
+		opacity: 0;
+		transition: opacity ease-out 200ms;
+
+		background-color: var(--sand);
+		padding: 1rem 2rem;
+		border-radius: 1.5rem;
+		font-size: 0.9rem;
+		font-family: var(--font-family-main);
+		color: var(--charcoal);
+
+		a {
+			color: initial;
+		}
+
+		&-close {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: var(--charcoal);
+			border-radius: 50%;
+			color: var(--sand);
+			cursor: pointer;
+			position: absolute;
+			top: 0;
+			right: 0;
+			transform: translateY(-30%);
+		}
+	}
+}

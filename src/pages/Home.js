@@ -1,12 +1,10 @@
-import { memo, useEffect, useRef } from 'react';
-import { useGlobalContext } from '../utils/GlobalProvider';
+import { memo, useEffect, useRef } from "react";
+import { useGlobalContext } from "../utils/GlobalProvider";
 
-import PageProfile from './Profile';
+import PageProfile from "./Profile";
 
 function Home() {
 	const { user } = useGlobalContext();
-
-	console.log('user', user);
 
 	return (
 		<div className="page home">

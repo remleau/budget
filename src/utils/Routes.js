@@ -1,7 +1,9 @@
 export const ROUTES = {
-	ROOT: '/',
-	BUDGETS: '/budgets',
-	STOCKS: '/stocks',
-	CATEGORIES: '/categories',
-	LOGIN: '/login',
+	ROOT: "/",
+	EXPENSES: "/expenses",
+	STOCKS: "/stocks",
+	CATEGORIES: "/categories",
+	CATEGORIE: "/categorie/:id",
+	ADDCATEGORIE: "/add-categorie",
+	LOGIN: "/login",
 };
