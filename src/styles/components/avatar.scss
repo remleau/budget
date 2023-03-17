@@ -5,6 +5,11 @@
 	padding: 1rem;
 	padding-top: 2rem;
 
+	&:active,
+	&:focus-visible {
+		text-decoration: none;
+	}
+
 	&-name {
 		margin-bottom: 0.3rem;
 

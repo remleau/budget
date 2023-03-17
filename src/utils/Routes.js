@@ -4,7 +4,8 @@ export const ROUTES = {
 	STOCKS: "/stocks",
 	CATEGORIES: "/categories",
 	CATEGORIE: "/categorie/:id",
-	ADDCATEGORIE: "/add-categorie",
+	ADDCATEGORIE: "/categorie/add",
 	EDITCATEGORIE: "/categorie/edit/:id",
 	LOGIN: "/login",
+	PROFILE: "/profile",
 };

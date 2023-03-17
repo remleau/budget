@@ -1,10 +1,10 @@
 import { memo, useEffect, useRef } from "react";
 
-import useCategories from "../hooks/useCategories";
-
-import { Input } from "../components/Form";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+
+import useCategories from "../hooks/useCategories";
+import FormCategorie from "../components/FormCategorie";
 
 function PageAddCategorie() {
 	const { addCategorie } = useCategories();
@@ -55,35 +55,7 @@ function PageAddCategorie() {
 					className="form"
 					encType="multipart/form-data"
 				>
-					<Input
-						onChange={formik.handleChange}
-						value={formik.values.name}
-						touched={formik.touched.name}
-						error={formik.errors.name}
-						name="name"
-						type="text"
-						label={"Name"}
-					/>
-					<Input
-						onChange={formik.handleChange}
-						value={formik.values.background_image}
-						touched={formik.touched.background_image}
-						error={formik.errors.background_image}
-						name="background_image"
-						type="text"
-						label={"background image"}
-						instruction="Only domain available: https://unsplash.com"
-					/>
-					<Input
-						onChange={formik.handleChange}
-						value={formik.values.icon}
-						touched={formik.touched.icon}
-						error={formik.errors.icon}
-						name="icon"
-						type="text"
-						label={"Icon name"}
-						instruction="Check out icons: https://react-icons.github.io/react-icons/icons?name=ci"
-					/>
+					<FormCategorie formik={formik} />
 					<div className="form-actions">
 						<button
 							type="submit"

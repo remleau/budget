@@ -1,16 +1,19 @@
-import { memo } from "react";
-import { useParams } from "react-router-dom";
+import { memo, useCallback } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
+import { ROUTES } from "../utils/Routes";
 import useCategories from "../hooks/useCategories";
 
 import DynamicIcon from "../components/DynamicIcon";
-import { Input } from "../components/Form";
+import FormCategorie from "../components/FormCategorie";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 function PageEditCategorie() {
 	const { id } = useParams();
-	const { categories, updateCategorie } = useCategories();
+	const navigate = useNavigate();
+
+	const { categories, updateCategorie, deleteCategorie } = useCategories();
 
 	const singleCategorie = categories?.filter((cat) => cat.id === id).at(0);
 
@@ -30,6 +33,13 @@ function PageEditCategorie() {
 		},
 	});
 
+	const removeCat = useCallback(async (id) => {
+		let res = await deleteCategorie(id);
+		if (res) {
+			navigate(ROUTES.CATEGORIES);
+		}
+	}, []);
+
 	const style = {
 		backgroundImage: `url(${
 			formik.values.background_image
@@ -47,9 +57,10 @@ function PageEditCategorie() {
 							<DynamicIcon name={formik.values.icon} size={40} />
 							Edit {formik.values.name} categorie
 						</h1>
+						x
 					</div>
 					<div className="hero-actions">
-						<a>
+						<a onClick={() => removeCat(singleCategorie?.id)}>
 							<DynamicIcon size={18} name="CiTrash" />
 							Delete {singleCategorie?.name} categrorie
 						</a>
@@ -63,35 +74,8 @@ function PageEditCategorie() {
 					className="form"
 					encType="multipart/form-data"
 				>
-					<Input
-						onChange={formik.handleChange}
-						value={formik.values.name}
-						touched={formik.touched.name}
-						error={formik.errors.name}
-						name="name"
-						type="text"
-						label={"Name"}
-					/>
-					<Input
-						onChange={formik.handleChange}
-						value={formik.values.background_image}
-						touched={formik.touched.background_image}
-						error={formik.errors.background_image}
-						name="background_image"
-						type="text"
-						label={"background image"}
-						instruction="Only domain available: https://unsplash.com"
-					/>
-					<Input
-						onChange={formik.handleChange}
-						value={formik.values.icon}
-						touched={formik.touched.icon}
-						error={formik.errors.icon}
-						name="icon"
-						type="text"
-						label={"Icon name"}
-						instruction="Check out icons: https://react-icons.github.io/react-icons/icons?name=ci"
-					/>
+					<FormCategorie formik={formik} />
+
 					<div className="form-actions">
 						<button
 							type="submit"

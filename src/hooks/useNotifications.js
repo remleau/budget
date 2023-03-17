@@ -13,17 +13,21 @@ function useNotifications() {
 
 	useEffect(() => {
 		pb.beforeSend = function (url, options) {
-			setNotifications(null);
+			//setNotifications(null);
 			setMethod(options.method);
 			return { url, options };
 		};
 
 		pb.afterSend = function (response, data) {
-			if (response.status !== 200) {
+			if (response.status !== 200 && 204) {
 				setNotifications(() => <div>{data?.message}</div>);
 			}
 
-			console.log(method, data);
+			if (response.status == 204) {
+				setNotifications(() => <div>Record delete</div>);
+			}
+
+			console.log(response, method, data);
 
 			switch (data?.collectionName) {
 				case "categories":

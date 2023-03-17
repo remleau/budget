@@ -16,7 +16,9 @@ function Header() {
 
 	return (
 		<header>
-			<Avatar />
+			<NavLink to={ROUTES.PROFILE} style={{ textDecoration: "none" }}>
+				<Avatar />
+			</NavLink>
 
 			<div className="menu">
 				<ul>

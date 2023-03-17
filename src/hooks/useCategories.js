@@ -20,6 +20,16 @@ function useCategories() {
 		}
 	}, []);
 
+	const deleteCategorie = useCallback(async (id) => {
+		try {
+			const result = await pb.collection("categories").delete(id);
+
+			return result;
+		} catch (error) {
+			console.log("Error:", error);
+		}
+	}, []);
+
 	const updateCategorie = useCallback(async (id, values) => {
 		try {
 			const result = await pb
@@ -52,7 +62,13 @@ function useCategories() {
 	}, []);
 
 	return useMemo(() => {
-		return { addCategorie, updateCategorie, getCategories, categories };
+		return {
+			addCategorie,
+			updateCategorie,
+			getCategories,
+			deleteCategorie,
+			categories,
+		};
 	}, [categories]);
 }
 

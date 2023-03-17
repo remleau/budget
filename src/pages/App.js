@@ -12,6 +12,9 @@ import Categories from "./Categories";
 import Categorie from "./Categorie";
 import AddCategorie from "./AddCategorie";
 import EditCategorie from "./EditCategorie";
+import Profile from "./PageProfile";
+import Stocks from "./PageStocks";
+import Expenses from "./PageStocks";
 
 import ToastNotification from "../components/ToastNotification";
 
@@ -32,6 +35,9 @@ function App() {
 					<Route path={ROUTES.CATEGORIE} element={<Categorie />} />
 					<Route path={ROUTES.ADDCATEGORIE} element={<AddCategorie />} />
 					<Route path={ROUTES.EDITCATEGORIE} element={<EditCategorie />} />
+					<Route path={ROUTES.PROFILE} element={<Profile />} />
+					<Route path={ROUTES.STOCKS} element={<Stocks />} />
+					<Route path={ROUTES.EXPENSES} element={<Expenses />} />
 				</Route>
 			</Routes>
 			<ToastNotification />
