@@ -18,6 +18,7 @@ function PageProfile() {
 			monthly_income: user.monthly_income || "",
 			name: user.name || "",
 			currency: user.currency || "",
+			prefered_currency: user.prefered_currency || "",
 		},
 		enableReinitialize: true,
 		validationSchema: Yup.object({
@@ -29,6 +30,8 @@ function PageProfile() {
 				.required("You must specify a number"),
 		}),
 		async onSubmit(values) {
+			values.currency = values.currency.toUpperCase();
+			values.prefered_currency = values.prefered_currency.toUpperCase();
 			await update_user(values);
 			formik.resetForm({
 				...formik.initialValues,
@@ -61,24 +64,36 @@ function PageProfile() {
 						type="text"
 						label={"Name"}
 					/>
-					<Input
-						onChange={formik.handleChange}
-						value={formik.values.monthly_income}
-						touched={formik.touched.monthly_income}
-						error={formik.errors.monthly_income}
-						name="monthly_income"
-						type="number"
-						label={"Monthly income"}
-					/>
-					<Input
-						onChange={formik.handleChange}
-						value={formik.values.currency}
-						touched={formik.touched.currency}
-						error={formik.errors.currency}
-						name="currency"
-						type="text"
-						label={"Prefered currency"}
-					/>
+					<div className="form-col">
+						<Input
+							onChange={formik.handleChange}
+							value={formik.values.monthly_income}
+							touched={formik.touched.monthly_income}
+							error={formik.errors.monthly_income}
+							name="monthly_income"
+							type="number"
+							label={"Monthly income"}
+						/>
+						<Input
+							onChange={formik.handleChange}
+							value={formik.values.currency}
+							touched={formik.touched.currency}
+							error={formik.errors.currency}
+							name="currency"
+							type="text"
+							label={"Your current currency"}
+						/>
+						<Input
+							onChange={formik.handleChange}
+							value={formik.values.prefered_currency}
+							touched={formik.touched.prefered_currency}
+							error={formik.errors.prefered_currency}
+							name="prefered_currency"
+							type="text"
+							label={"Prefered currency"}
+						/>
+					</div>
+
 					<div className="form-actions">
 						<button
 							type="submit"
@@ -86,7 +101,7 @@ function PageProfile() {
 								Object.keys(formik.errors).length === 0 ? "" : "disabled"
 							}`}
 						>
-							update
+							Update
 						</button>
 					</div>
 				</form>

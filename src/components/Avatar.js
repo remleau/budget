@@ -1,8 +1,10 @@
-import React, { memo } from 'react';
-import { useGlobalContext } from '../utils/GlobalProvider';
+import React, { memo } from "react";
+import { useGlobalContext } from "../utils/GlobalProvider";
+import useCurrency from "../hooks/useCurrency";
 
 function Avatar() {
 	const { user } = useGlobalContext();
+	const { convertPrice } = useCurrency();
 
 	return (
 		<div className="avatar">
@@ -13,7 +15,8 @@ function Avatar() {
 				</div>
 				<div className="avatar-cash">
 					<p>
-						Total cash: {user.monthly_income}$ <sup>{user.currency}</sup>
+						Total cash: {convertPrice(user.monthly_income)}
+						<sup> {user.prefered_currency}</sup>
 					</p>
 				</div>
 			</div>

@@ -24,7 +24,7 @@ function useNotifications() {
 			}
 
 			if (response.status == 204) {
-				setNotifications(() => <div>Record delete</div>);
+				setNotifications(() => <div>Record deleted</div>);
 			}
 
 			console.log(response, method, data);

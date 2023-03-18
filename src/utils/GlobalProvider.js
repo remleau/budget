@@ -26,6 +26,7 @@ export const GlobalProvider = ({ children }) => {
 
 	const [token, setToken] = useState(pb.authStore.token);
 	const [user, setUser] = useState(pb.authStore.model);
+	const [currency, setCurrency] = useState(1);
 
 	useEffect(() => {
 		return pb.authStore.onChange((token, model) => {
@@ -65,9 +66,31 @@ export const GlobalProvider = ({ children }) => {
 		}
 	}, [token]);
 
+	const getCurrency = useCallback(async () => {
+		try {
+			const result = await fetch(
+				"https://api.freecurrencyapi.com/v1/latest/?apikey=" +
+					process.env.REACT_APP_CURRENCY_API_KEY +
+					"&currencies=" +
+					user.prefered_currency +
+					"&base_currency=" +
+					user.currency
+			).then((response) => response.json());
+
+			setCurrency(Object.values(result?.data)[0]);
+		} catch (error) {
+			console.log("Error:", error);
+		}
+	}, [user]);
+
+	useEffect(() => {
+		getCurrency();
+	}, [user]);
+
 	useInterval(refreshSession, token ? twoMinutesInMs : null);
 
 	const value = {
+		currency,
 		register,
 		login,
 		logout,
