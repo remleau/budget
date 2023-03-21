@@ -6,6 +6,10 @@ export const ROUTES = {
 	CATEGORIE: "/categorie/:id",
 	ADDCATEGORIE: "/categorie/add",
 	EDITCATEGORIE: "/categorie/edit/:id",
+	GOALS: "/goals",
+	GOAL: "/goal/:id",
+	ADDGOAL: "/goals/add",
+	EDITGOAL: "/goals/edit/:id",
 	LOGIN: "/login",
 	PROFILE: "/profile",
 };

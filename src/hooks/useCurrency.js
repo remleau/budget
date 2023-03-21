@@ -1,4 +1,4 @@
-import { useMemo, useCallback, useState, useEffect } from "react";
+import { useCallback } from "react";
 import { useGlobalContext } from "../utils/GlobalProvider";
 
 function useCurrency() {

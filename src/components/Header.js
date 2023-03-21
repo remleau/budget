@@ -5,7 +5,14 @@ import { ROUTES } from "../utils/Routes";
 import { useGlobalContext } from "../utils/GlobalProvider";
 
 import Avatar from "./Avatar";
-import { CiBank, CiVault, CiFolderOn, CiUser, CiPlug1 } from "react-icons/ci";
+import {
+	CiBank,
+	CiVault,
+	CiFolderOn,
+	CiUser,
+	CiPlug1,
+	CiMedal,
+} from "react-icons/ci";
 
 function Header() {
 	const { logout, user } = useGlobalContext();
@@ -13,6 +20,10 @@ function Header() {
 	const isAddCategoriePage = useMatch(ROUTES.ADDCATEGORIE);
 	const isEditCategoriePage = useMatch(ROUTES.EDITCATEGORIE);
 	const isSingleCategoriePage = useMatch(ROUTES.CATEGORIE);
+
+	const isAddGoalPage = useMatch(ROUTES.ADDGOAL);
+	const isEditGoalPage = useMatch(ROUTES.EDITGOAL);
+	const isSingleGoalPage = useMatch(ROUTES.GOAL);
 
 	return (
 		<header>
@@ -26,6 +37,20 @@ function Header() {
 						<NavLink to={ROUTES.ROOT}>
 							<CiUser size={18} />
 							<span>Home</span>
+						</NavLink>
+					</li>
+
+					<li>
+						<NavLink
+							to={ROUTES.GOALS}
+							className={
+								isAddGoalPage || isSingleGoalPage || isEditGoalPage
+									? "active"
+									: null
+							}
+						>
+							<CiMedal size={18} />
+							<span>Goals</span>
 						</NavLink>
 					</li>
 

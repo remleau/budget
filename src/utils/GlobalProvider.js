@@ -83,13 +83,10 @@ export const GlobalProvider = ({ children }) => {
 		}
 	}, [user]);
 
-	useEffect(() => {
-		getCurrency();
-	}, [user]);
-
 	useInterval(refreshSession, token ? twoMinutesInMs : null);
 
 	const value = {
+		getCurrency,
 		currency,
 		register,
 		login,

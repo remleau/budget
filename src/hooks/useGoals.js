@@ -1,15 +1,15 @@
 import { useCallback, useState, useEffect } from "react";
 import { useGlobalContext } from "../utils/GlobalProvider";
 
-function useCategories() {
+function useGoals() {
 	const { pb } = useGlobalContext();
 
-	const [categories, setCategories] = useState(null);
+	const [goals, setGoals] = useState(null);
 
-	const addCategorie = useCallback(
+	const addGoal = useCallback(
 		async (values) => {
 			try {
-				const result = await pb.collection("categories").create({
+				const result = await pb.collection("goals").create({
 					...values,
 				});
 
@@ -23,10 +23,10 @@ function useCategories() {
 		[pb]
 	);
 
-	const deleteCategorie = useCallback(
+	const deleteGoal = useCallback(
 		async (id) => {
 			try {
-				const result = await pb.collection("categories").delete(id);
+				const result = await pb.collection("goals").delete(id);
 
 				// update state of categories
 
@@ -38,12 +38,10 @@ function useCategories() {
 		[pb]
 	);
 
-	const updateCategorie = useCallback(
+	const updateGoal = useCallback(
 		async (id, values) => {
 			try {
-				const result = await pb
-					.collection("categories")
-					.update(id, { ...values });
+				const result = await pb.collection("goals").update(id, { ...values });
 
 				// update state of categories
 
@@ -55,32 +53,33 @@ function useCategories() {
 		[pb]
 	);
 
-	const getCategories = useCallback(async () => {
+	const getGoals = useCallback(async () => {
 		try {
-			const result = await pb.collection("categories").getFullList(
+			const result = await pb.collection("goals").getFullList(
 				{
 					sort: "-created",
+					expand: "categorie_id",
 				},
 				{ $autoCancel: false }
 			);
 
-			if (result) setCategories(result);
+			if (result) setGoals(result);
 		} catch (error) {
 			console.log("Error:", error);
 		}
 	}, [pb]);
 
 	useEffect(() => {
-		getCategories();
-	}, [getCategories]);
+		getGoals();
+	}, [getGoals]);
 
 	return {
-		addCategorie,
-		updateCategorie,
-		getCategories,
-		deleteCategorie,
-		categories,
+		addGoal,
+		updateGoal,
+		getGoals,
+		deleteGoal,
+		goals,
 	};
 }
 
-export default useCategories;
+export default useGoals;

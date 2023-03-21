@@ -9,7 +9,6 @@ function useNotifications() {
 
 	const [method, setMethod] = useState(null);
 	const [notifications, setNotifications] = useState(null);
-	const [formError, setFormError] = useState(null);
 
 	useEffect(() => {
 		pb.beforeSend = function (url, options) {
@@ -27,7 +26,7 @@ function useNotifications() {
 				setNotifications(() => <div>Record deleted</div>);
 			}
 
-			console.log(response, method, data);
+			console.log("notif", response, method, data);
 
 			switch (data?.collectionName) {
 				case "categories":

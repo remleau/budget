@@ -15,11 +15,15 @@ import EditCategorie from "./EditCategorie";
 import Profile from "./PageProfile";
 import Stocks from "./PageStocks";
 import Expenses from "./PageStocks";
+import Goals from "./PageGoals";
+import Goal from "./PageGoal";
 
 import ToastNotification from "../components/ToastNotification";
 
 function App() {
-	const { user } = useGlobalContext();
+	const { user, getCurrency } = useGlobalContext();
+
+	getCurrency();
 
 	const isLoginPage = useMatch(ROUTES.LOGIN);
 
@@ -31,13 +35,15 @@ function App() {
 				<Route path={ROUTES.ROOT} element={<Layout />}>
 					<Route index element={<Home />} />
 					<Route path={ROUTES.LOGIN} element={<Login />} />
+					<Route path={ROUTES.PROFILE} element={<Profile />} />
+					<Route path={ROUTES.STOCKS} element={<Stocks />} />
+					<Route path={ROUTES.EXPENSES} element={<Expenses />} />
 					<Route path={ROUTES.CATEGORIES} element={<Categories />} />
 					<Route path={ROUTES.CATEGORIE} element={<Categorie />} />
 					<Route path={ROUTES.ADDCATEGORIE} element={<AddCategorie />} />
 					<Route path={ROUTES.EDITCATEGORIE} element={<EditCategorie />} />
-					<Route path={ROUTES.PROFILE} element={<Profile />} />
-					<Route path={ROUTES.STOCKS} element={<Stocks />} />
-					<Route path={ROUTES.EXPENSES} element={<Expenses />} />
+					<Route path={ROUTES.GOALS} element={<Goals />} />
+					<Route path={ROUTES.GOAL} element={<Goal />} />
 				</Route>
 			</Routes>
 			<ToastNotification />
