@@ -58,7 +58,7 @@ function useGoals() {
 			const result = await pb.collection("goals").getFullList(
 				{
 					sort: "-created",
-					expand: "categorie_id",
+					expand: "categories",
 				},
 				{ $autoCancel: false }
 			);

@@ -21,16 +21,14 @@ function PageGoals() {
 
 	return (
 		<div className="page goals">
-			<section>
-				<div className="hero" style={style}>
-					<div className="hero-content">
-						<h1>
-							My goals <sup>({goals?.length})</sup>
-						</h1>
-					</div>
-					<div className="overlay"></div>
+			<div className="hero" style={style}>
+				<div className="hero-content">
+					<h1>
+						My goals <sup>({goals?.length})</sup>
+					</h1>
 				</div>
-			</section>
+				<div className="overlay"></div>
+			</div>
 			<section className="slider">
 				<Swiper
 					ref={swiperRef}

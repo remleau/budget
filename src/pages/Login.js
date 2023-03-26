@@ -25,11 +25,18 @@ function Login() {
 	return (
 		<div className="page login">
 			<section>
-				<h2>Sign Up to the game</h2>
-				<form onSubmit={handleOnSubmit}>
-					<input placeholder="Email" type="email" ref={emailRef} />
-					<input placeholder="Password" type="password" ref={passwordRef} />
-					<button type="submit">Connect</button>
+				<h2>Sign Up to your budget</h2>
+				<form className="form" onSubmit={handleOnSubmit}>
+					<div className="form-field-content">
+						<input placeholder="Email" type="email" ref={emailRef} />
+					</div>
+					<div className="form-field-content">
+						<input placeholder="Password" type="password" ref={passwordRef} />
+					</div>
+
+					<div className="form-actions">
+						<button type="submit">Connect</button>
+					</div>
 				</form>
 			</section>
 		</div>

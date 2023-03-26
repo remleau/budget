@@ -41,14 +41,12 @@ function PageProfile() {
 
 	return (
 		<div className="page profile">
-			<section>
-				<div className="hero" style={style}>
-					<div className="hero-content">
-						<h1>Personal information</h1>
-					</div>
-					<div className="overlay"></div>
+			<div className="hero" style={style}>
+				<div className="hero-content">
+					<h1>Personal information</h1>
 				</div>
-			</section>
+				<div className="overlay"></div>
+			</div>
 			<section className="content">
 				<form
 					onSubmit={formik.handleSubmit}

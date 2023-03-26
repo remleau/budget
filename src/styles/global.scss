@@ -21,6 +21,25 @@ footer {
 	margin-left: var(--header-width);
 }
 
+.page {
+	&-content {
+		width: 100%;
+		display: flex;
+
+		&-container {
+			max-width: 58vw;
+			padding: 2rem;
+
+			h3 {
+				font-family: var(--font-family-main);
+				color: var(--gray);
+				font-weight: 500;
+				font-size: 1.35rem;
+			}
+		}
+	}
+}
+
 .content {
 	padding: 4rem 10rem;
 }
@@ -37,4 +56,11 @@ li,
 a,
 span {
 	font-family: var(--font-family-main);
+}
+
+sup {
+	margin-left: 0.15rem;
+	vertical-align: text-top;
+	font-size: 0.6rem;
+	text-transform: uppercase;
 }

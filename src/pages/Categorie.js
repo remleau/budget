@@ -25,28 +25,26 @@ function PageCategorie() {
 	return (
 		singleCategorie && (
 			<div className="page categories">
-				<section>
-					<div className="hero" style={style}>
-						<div className="hero-content">
-							<h1>
-								<DynamicIcon name={singleCategorie.icon} size={40} />
-								{singleCategorie.name} categorie
-							</h1>
-						</div>
-						<div className="hero-actions">
-							<NavLink
-								to={ROUTES.EDITCATEGORIE.replace(
-									":id",
-									singleCategorie.id.toString()
-								)}
-							>
-								<DynamicIcon size={18} name="CiPen" />
-								Edit {singleCategorie.name} categrorie
-							</NavLink>
-						</div>
-						<div className="overlay"></div>
+				<div className="hero" style={style}>
+					<div className="hero-content">
+						<h1>
+							<DynamicIcon name={singleCategorie.icon} size={40} />
+							{singleCategorie.name} categorie
+						</h1>
 					</div>
-				</section>
+					<div className="hero-actions">
+						<NavLink
+							to={ROUTES.EDITCATEGORIE.replace(
+								":id",
+								singleCategorie.id.toString()
+							)}
+						>
+							<DynamicIcon size={18} name="CiPen" />
+							Edit {singleCategorie.name} categrorie
+						</NavLink>
+					</div>
+					<div className="overlay"></div>
+				</div>
 			</div>
 		)
 	);

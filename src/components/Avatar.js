@@ -14,10 +14,7 @@ function Avatar() {
 					<p>{user.name}</p>
 				</div>
 				<div className="avatar-cash">
-					<p>
-						Total cash: {convertPrice(user.monthly_income)}
-						<sup> {user.prefered_currency}</sup>
-					</p>
+					<p>Total cash: {convertPrice(user.monthly_income)}</p>
 				</div>
 			</div>
 		</div>

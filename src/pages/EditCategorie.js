@@ -50,24 +50,22 @@ function PageEditCategorie() {
 
 	return (
 		<div className="page add-categorie">
-			<section>
-				<div className="hero" style={style}>
-					<div className="hero-content">
-						<h1>
-							<DynamicIcon name={formik.values.icon} size={40} />
-							Edit {formik.values.name} categorie
-						</h1>
-						x
-					</div>
-					<div className="hero-actions">
-						<a onClick={() => removeCat(singleCategorie?.id)}>
-							<DynamicIcon size={18} name="CiTrash" />
-							Delete {singleCategorie?.name} categrorie
-						</a>
-					</div>
-					<div className="overlay"></div>
+			<div className="hero" style={style}>
+				<div className="hero-content">
+					<h1>
+						<DynamicIcon name={formik.values.icon} size={40} />
+						Edit {formik.values.name} categorie
+					</h1>
+					x
 				</div>
-			</section>
+				<div className="hero-actions">
+					<a onClick={() => removeCat(singleCategorie?.id)}>
+						<DynamicIcon size={18} name="CiTrash" />
+						Delete {singleCategorie?.name} categrorie
+					</a>
+				</div>
+				<div className="overlay"></div>
+			</div>
 			<section className="content">
 				<form
 					onSubmit={formik.handleSubmit}

@@ -1,0 +1,36 @@
+.sidebar {
+	width: 18vw;
+	position: fixed;
+	right: 0;
+
+	padding: 3rem;
+	margin-top: 2rem;
+
+	box-shadow: 3px 0px 10px -5px rgba(65, 71, 84, 0.4);
+	border: 1px solid var(--sand);
+	border-radius: 3px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+
+	&-content {
+		> div {
+			margin-bottom: 1.25rem;
+
+			p,
+			a {
+				font-size: 1.1rem;
+				font-family: var(--font-family-secondary);
+				color: var(--charcaol);
+
+				span {
+					margin-left: 0.5rem;
+					font-weight: bold;
+				}
+			}
+
+			&:last-child {
+				margin-bottom: 0rem;
+			}
+		}
+	}
+}
