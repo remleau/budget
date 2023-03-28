@@ -35,8 +35,8 @@ function PageGoal() {
 			<div className="page categories">
 				<div className="hero" style={style}>
 					<div className="hero-content">
-						<h1>{singleGoal.name}</h1>
-						<p>{singleGoal.description}</p>
+						<h1>{singleGoal?.name}</h1>
+						<p>{singleGoal?.description}</p>
 					</div>
 					<div className="hero-actions">
 						<NavLink
@@ -59,12 +59,13 @@ function PageGoal() {
 							</div>
 							<div className="">
 								<p>
-									Money Goal: <span>{convertPrice(singleGoal.money_goal)}</span>
+									Money Goal:{" "}
+									<span>{convertPrice(singleGoal?.money_goal)}</span>
 								</p>
 							</div>
 							<div className="">
 								<p>
-									Categorie{categories.length > 1 ? "(s): " : ": "}
+									Categorie{categories?.length > 1 ? "(s): " : ": "}
 									{categories?.map((cat, index) => (
 										<NavLink
 											to={ROUTES.CATEGORIE.replace(":id", cat.id.toString())}

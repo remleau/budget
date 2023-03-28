@@ -17,6 +17,8 @@ import Stocks from "./PageStocks";
 import Expenses from "./PageStocks";
 import Goals from "./PageGoals";
 import Goal from "./PageGoal";
+import AddGoal from "./PageAddGoal";
+import EditGoal from "./PageEditGoal";
 
 import ToastNotification from "../components/ToastNotification";
 
@@ -38,12 +40,16 @@ function App() {
 					<Route path={ROUTES.PROFILE} element={<Profile />} />
 					<Route path={ROUTES.STOCKS} element={<Stocks />} />
 					<Route path={ROUTES.EXPENSES} element={<Expenses />} />
+
 					<Route path={ROUTES.CATEGORIES} element={<Categories />} />
 					<Route path={ROUTES.CATEGORIE} element={<Categorie />} />
 					<Route path={ROUTES.ADDCATEGORIE} element={<AddCategorie />} />
 					<Route path={ROUTES.EDITCATEGORIE} element={<EditCategorie />} />
+
 					<Route path={ROUTES.GOALS} element={<Goals />} />
 					<Route path={ROUTES.GOAL} element={<Goal />} />
+					<Route path={ROUTES.ADDGOAL} element={<AddGoal />} />
+					<Route path={ROUTES.EDITGOAL} element={<EditGoal />} />
 				</Route>
 			</Routes>
 			<ToastNotification />

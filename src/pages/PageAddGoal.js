@@ -3,25 +3,25 @@ import { memo } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import useCategories from "../hooks/useCategories";
-import FormCategorie from "../components/FormCategorie";
+import useGoals from "../hooks/useGoals";
+import FormGoal from "../components/FormGoal";
 
-function PageAddCategorie() {
-	const { addCategorie } = useCategories();
+function PageAddGoal() {
+	const { addGoal } = useGoals();
 
 	const formik = useFormik({
 		initialValues: {
 			name: "",
-			background_image: "",
-			icon: "",
+			money_goal: "",
+			categories: "",
 		},
 		enableReinitialize: true,
 		validationSchema: Yup.object({
 			name: Yup.string().required("The name is required"),
-			background_image: Yup.string().required("The background is required"),
+			money_goal: Yup.string().required("The money goal is required"),
 		}),
 		async onSubmit(values) {
-			let result = await addCategorie(values);
+			let result = await addGoal(values);
 
 			if (result) {
 				formik.resetForm({
@@ -40,10 +40,10 @@ function PageAddCategorie() {
 	};
 
 	return (
-		<div className="page add-categorie">
+		<div className="page add-goal">
 			<div className="hero" style={style}>
 				<div className="hero-content">
-					<h1>Add a new categorie</h1>
+					<h1>Add a new goal</h1>
 				</div>
 				<div className="overlay"></div>
 			</div>
@@ -53,7 +53,7 @@ function PageAddCategorie() {
 					className="form"
 					encType="multipart/form-data"
 				>
-					<FormCategorie formik={formik} />
+					<FormGoal formik={formik} />
 					<div className="form-actions">
 						<button
 							type="submit"
@@ -70,4 +70,4 @@ function PageAddCategorie() {
 	);
 }
 
-export default memo(PageAddCategorie);
+export default memo(PageAddGoal);

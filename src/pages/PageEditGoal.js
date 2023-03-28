@@ -2,41 +2,42 @@ import { memo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { ROUTES } from "../utils/Routes";
-import useCategories from "../hooks/useCategories";
+import useGoals from "../hooks/useGoals";
 
 import DynamicIcon from "../components/DynamicIcon";
-import FormCategorie from "../components/FormCategorie";
+import FormGoal from "../components/FormGoal";
+
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-function PageEditCategorie() {
+function PageEditGoal() {
 	const { id } = useParams();
 	const navigate = useNavigate();
 
-	const { categories, updateCategorie, deleteCategorie } = useCategories();
+	const { goals, updateGoal, deleteGoal } = useGoals();
 
-	const singleCategorie = categories?.filter((cat) => cat.id === id).at(0);
+	const singleGoal = goals?.filter((cat) => cat.id === id).at(0);
 
 	const formik = useFormik({
 		initialValues: {
-			name: singleCategorie?.name || "",
-			background_image: singleCategorie?.background_image || "",
-			icon: singleCategorie?.icon || "",
+			name: singleGoal?.name || "",
+			money_goal: singleGoal?.money_goal || "",
+			categories: singleGoal?.categories || "",
 		},
 		enableReinitialize: true,
 		validationSchema: Yup.object({
 			name: Yup.string().required("The name is required"),
-			background_image: Yup.string().required("The background is required"),
+			money_goal: Yup.string().required("The money goal is required"),
 		}),
 		async onSubmit(values) {
-			await updateCategorie(singleCategorie.id, values);
+			await updateGoal(singleGoal.id, values);
 		},
 	});
 
-	const removeCat = async (id) => {
-		let res = await deleteCategorie(id);
+	const removeGoal = async (id) => {
+		let res = await deleteGoal(id);
 		if (res) {
-			navigate(ROUTES.CATEGORIES);
+			navigate(ROUTES.GOALS);
 		}
 	};
 
@@ -54,13 +55,13 @@ function PageEditCategorie() {
 				<div className="hero-content">
 					<h1>
 						<DynamicIcon name={formik.values.icon} size={40} />
-						Edit {formik.values.name} categorie
+						Edit {formik.values.name} goal
 					</h1>
 				</div>
 				<div className="hero-actions">
-					<a href="/#" onClick={() => removeCat(singleCategorie?.id)}>
+					<a href="/#" onClick={() => removeGoal(singleGoal?.id)}>
 						<DynamicIcon size={18} name="CiTrash" />
-						Delete {singleCategorie?.name} categrorie
+						Delete {singleGoal?.name} goal
 					</a>
 				</div>
 				<div className="overlay"></div>
@@ -71,7 +72,7 @@ function PageEditCategorie() {
 					className="form"
 					encType="multipart/form-data"
 				>
-					<FormCategorie formik={formik} />
+					<FormGoal formik={formik} />
 
 					<div className="form-actions">
 						<button
@@ -89,4 +90,4 @@ function PageEditCategorie() {
 	);
 }
 
-export default memo(PageEditCategorie);
+export default memo(PageEditGoal);

@@ -103,3 +103,53 @@ export const ImportFiles = ({
 		</React.Fragment>
 	);
 };
+
+export const Select = ({
+	onChange,
+	value,
+	touched,
+	error,
+	name,
+	type,
+	disabled,
+	placeholder,
+	label,
+	instruction,
+	categories,
+}) => {
+	return (
+		<label htmlFor="" className="form-field">
+			<p>
+				{label}
+				{instruction && (
+					<span className="form-field-instruction">{instruction}</span>
+				)}
+			</p>
+			<div className="form-field-content">
+				<select
+					name={name}
+					value={value}
+					onChange={onChange}
+					disabled={disabled}
+					multiple
+				>
+					<option value="" label="Select a categorie(s)">
+						Select a categorie(s)
+					</option>
+					{categories?.map((cat) => {
+						return (
+							<option key={cat?.id} value={cat?.id} label={cat?.name}>
+								{cat?.name}
+							</option>
+						);
+					})}
+				</select>
+				{touched && error && (
+					<div className="form-field-error">
+						<span>{error}</span>
+					</div>
+				)}
+			</div>
+		</label>
+	);
+};

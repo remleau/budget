@@ -20,6 +20,7 @@
 		}
 
 		&-content {
+			select,
 			input {
 				width: 100%;
 				border: none;
@@ -41,6 +42,12 @@
 					-webkit-box-shadow: 0 0 0 30px #fff inset !important;
 				}
 			}
+
+			select {
+				option {
+					margin-bottom: 0.5rem;
+				}
+			}
 		}
 
 		&-error {
@@ -52,6 +59,7 @@
 	&-col {
 		display: flex;
 		margin: 0 -1rem;
+		margin-bottom: 1.75rem;
 
 		> label {
 			margin: 0 1rem;

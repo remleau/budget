@@ -1,4 +1,4 @@
-import { useMemo, useCallback, useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import { ROUTES } from "../utils/Routes";
@@ -51,6 +51,22 @@ function useNotifications() {
 				case "users":
 					if (method === "PATCH")
 						setNotifications(() => <div>Updated account</div>);
+					break;
+
+				case "goals":
+					if (method === "PATCH") {
+						setNotifications(() => (
+							<NavLink to={ROUTES.GOAL.replace(":id", data?.id.toString())}>
+								<div>Goal {data?.name} updated</div>
+							</NavLink>
+						));
+					} else {
+						setNotifications(() => (
+							<NavLink to={ROUTES.GOAL.replace(":id", data?.id.toString())}>
+								<div>Goal {data?.name} added</div>
+							</NavLink>
+						));
+					}
 					break;
 
 				default:
