@@ -56,6 +56,7 @@ li,
 a,
 span {
 	font-family: var(--font-family-main);
+	font-weight: 300;
 }
 
 sup {
@@ -63,4 +64,17 @@ sup {
 	vertical-align: text-top;
 	font-size: 0.6rem;
 	text-transform: uppercase;
+}
+
+.days-to-go {
+	font-family: var(--font-family-secondary);
+	font-size: 0.85rem;
+	font-style: italic;
+	font-weight: 300 !important;
+
+	span {
+		font-weight: 500;
+		padding: 0 0.25rem;
+		color: var(--matte);
+	}
 }

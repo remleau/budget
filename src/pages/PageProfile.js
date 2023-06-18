@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef } from "react";
+import { memo } from "react";
 import { useGlobalContext } from "../utils/GlobalProvider";
 
 import { Input } from "../components/Form";
@@ -33,9 +33,6 @@ function PageProfile() {
 			values.currency = values.currency.toUpperCase();
 			values.prefered_currency = values.prefered_currency.toUpperCase();
 			await update_user(values);
-			formik.resetForm({
-				...formik.initialValues,
-			});
 		},
 	});
 

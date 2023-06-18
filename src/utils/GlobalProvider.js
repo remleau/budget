@@ -35,6 +35,10 @@ export const GlobalProvider = ({ children }) => {
 		});
 	}, []);
 
+	useEffect(() => {
+		getCurrency();
+	}, [user]);
+
 	const register = useCallback(async (email, password) => {
 		return await pb
 			.collection("users")

@@ -1,6 +1,9 @@
 import React from "react";
 import { useState } from "react";
 
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 export const Input = ({
 	onChange,
 	value,
@@ -149,6 +152,32 @@ export const Select = ({
 						<span>{error}</span>
 					</div>
 				)}
+			</div>
+		</label>
+	);
+};
+
+export const Datepicker = ({ name, label, instruction, formik }) => {
+	return (
+		<label htmlFor="" className="form-field">
+			<p>
+				{label}
+				{instruction && (
+					<span className="form-field-instruction">{instruction}</span>
+				)}
+			</p>
+			<div className="form-field-content">
+				<DatePicker
+					selected={formik.values[name] && new Date(formik.values[name])}
+					onChange={(date) => formik.setFieldValue(name, date)}
+					dateFormat="dd/MM/yyyy"
+					required
+				/>
+				{formik.touched.birthdate && formik.errors.birthdate ? (
+					<div className="form-field-error">
+						<span>{formik.errors.birthdate}</span>
+					</div>
+				) : null}
 			</div>
 		</label>
 	);

@@ -58,10 +58,10 @@ function PageEditCategorie() {
 					</h1>
 				</div>
 				<div className="hero-actions">
-					<a href="/#" onClick={() => removeCat(singleCategorie?.id)}>
+					<button onClick={() => removeCat(singleCategorie?.id)}>
 						<DynamicIcon size={18} name="CiTrash" />
 						Delete {singleCategorie?.name} categrorie
-					</a>
+					</button>
 				</div>
 				<div className="overlay"></div>
 			</div>

@@ -12,7 +12,6 @@ function useNotifications() {
 
 	useEffect(() => {
 		pb.beforeSend = function (url, options) {
-			//setNotifications(null);
 			setMethod(options.method);
 			return { url, options };
 		};
@@ -26,7 +25,7 @@ function useNotifications() {
 				setNotifications(() => <div>Record deleted</div>);
 			}
 
-			console.log("notif", response, method, data);
+			//console.log("notif", response, method, data);
 
 			switch (data?.collectionName) {
 				case "categories":

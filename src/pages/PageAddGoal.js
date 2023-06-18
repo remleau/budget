@@ -13,7 +13,9 @@ function PageAddGoal() {
 		initialValues: {
 			name: "",
 			money_goal: "",
-			categories: "",
+			categories: [],
+			description: "",
+			due_date: "",
 		},
 		enableReinitialize: true,
 		validationSchema: Yup.object({

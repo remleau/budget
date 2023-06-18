@@ -16,11 +16,19 @@
 		> div {
 			margin-bottom: 1.25rem;
 
+			h3 {
+				font-size: 1.2rem;
+				font-weight: 500;
+				color: var(--charcoal);
+				margin-bottom: 1rem;
+			}
+
 			p,
 			a {
 				font-size: 1.1rem;
 				font-family: var(--font-family-secondary);
-				color: var(--charcaol);
+				font-weight: 300;
+				color: var(--charcoal);
 				display: inline-block;
 				line-height: 1.5em;
 
@@ -32,6 +40,15 @@
 
 			&:last-child {
 				margin-bottom: 0rem;
+			}
+		}
+
+		.goals-associated {
+			div {
+				padding: 0.25rem;
+				padding-bottom: 0.75rem;
+				margin-bottom: 0.75rem;
+				border-bottom: 1px solid var(--charcoal);
 			}
 		}
 	}

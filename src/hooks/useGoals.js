@@ -69,6 +69,23 @@ function useGoals() {
 		}
 	}, [pb]);
 
+	const getGoalsByCategories = useCallback(
+		async (categories) => {
+			try {
+				const result = await pb.collection("goals").getFullList({
+					filter: `categories ?~ "${categories}"`,
+				});
+
+				if (result.length) {
+					return result;
+				}
+			} catch (error) {
+				console.log("Error:", error);
+			}
+		},
+		[pb]
+	);
+
 	useEffect(() => {
 		getGoals();
 	}, [getGoals]);
@@ -78,6 +95,7 @@ function useGoals() {
 		updateGoal,
 		getGoals,
 		deleteGoal,
+		getGoalsByCategories,
 		goals,
 	};
 }

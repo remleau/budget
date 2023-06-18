@@ -9,7 +9,7 @@ import Layout from "../components/Layout";
 import Home from "./Home";
 import Login from "./Login";
 import Categories from "./Categories";
-import Categorie from "./Categorie";
+import Categorie from "./PageCategorie";
 import AddCategorie from "./AddCategorie";
 import EditCategorie from "./EditCategorie";
 import Profile from "./PageProfile";
@@ -23,10 +23,7 @@ import EditGoal from "./PageEditGoal";
 import ToastNotification from "../components/ToastNotification";
 
 function App() {
-	const { user, getCurrency } = useGlobalContext();
-
-	getCurrency();
-
+	const { user } = useGlobalContext();
 	const isLoginPage = useMatch(ROUTES.LOGIN);
 
 	if (!user && !isLoginPage) return <Navigate to={ROUTES.LOGIN} />;

@@ -22,7 +22,9 @@ function PageEditGoal() {
 		initialValues: {
 			name: singleGoal?.name || "",
 			money_goal: singleGoal?.money_goal || "",
-			categories: singleGoal?.categories || "",
+			categories: singleGoal?.categories || [],
+			description: singleGoal?.description || "",
+			due_date: singleGoal?.due_date || "",
 		},
 		enableReinitialize: true,
 		validationSchema: Yup.object({
@@ -59,10 +61,10 @@ function PageEditGoal() {
 					</h1>
 				</div>
 				<div className="hero-actions">
-					<a href="/#" onClick={() => removeGoal(singleGoal?.id)}>
+					<button onClick={() => removeGoal(singleGoal?.id)}>
 						<DynamicIcon size={18} name="CiTrash" />
 						Delete {singleGoal?.name} goal
-					</a>
+					</button>
 				</div>
 				<div className="overlay"></div>
 			</div>

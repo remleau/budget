@@ -9,6 +9,7 @@ import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import DynamicIcon from "../components/DynamicIcon";
+import { daysToGo } from "../utils/fn";
 
 function PageGoals() {
 	const swiperRef = useRef(null);
@@ -41,7 +42,7 @@ function PageGoals() {
 					<SwiperSlide>
 						<NavLink to={ROUTES.ADDGOAL}>
 							<div className="swiper-card">
-								<div className="swiper-card-content">
+								<div className="swiper-card-content button-card">
 									<DynamicIcon size={40} name="CiSquarePlus" />
 									<p>Add a goal</p>
 								</div>
@@ -54,6 +55,9 @@ function PageGoals() {
 								<NavLink to={ROUTES.GOAL.replace(":id", goal.id.toString())}>
 									<div className="swiper-card">
 										<div className="swiper-card-content">
+											<p className="days-to-go">
+												In {daysToGo(goal.due_date)} days
+											</p>
 											<p>{goal.name}</p>
 										</div>
 									</div>

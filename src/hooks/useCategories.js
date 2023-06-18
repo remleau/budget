@@ -1,9 +1,10 @@
 import { useCallback, useState, useEffect } from "react";
 import { useGlobalContext } from "../utils/GlobalProvider";
 
-function useCategories() {
+function useCategories(catId) {
 	const { pb } = useGlobalContext();
 
+	const [categorie, setCategorie] = useState(null);
 	const [categories, setCategories] = useState(null);
 
 	const addCategorie = useCallback(
@@ -70,8 +71,29 @@ function useCategories() {
 		}
 	}, [pb]);
 
+	const getCategorie = useCallback(
+		async (catId) => {
+			try {
+				const result = await pb.collection("categories").getFullList(
+					{
+						filter: `id ?~ "${catId}"`,
+						sort: "-created",
+					},
+					{ $autoCancel: false }
+				);
+
+				if (result) setCategorie(result.at(0));
+			} catch (error) {
+				console.log("Error:", error);
+			}
+		},
+		[pb]
+	);
+
 	useEffect(() => {
 		getCategories();
+
+		if (catId) getCategorie(catId);
 	}, [getCategories]);
 
 	return {
@@ -80,6 +102,8 @@ function useCategories() {
 		getCategories,
 		deleteCategorie,
 		categories,
+		categorie,
+		getCategorie,
 	};
 }
 
