@@ -8,7 +8,7 @@ import { useGlobalContext } from "../utils/GlobalProvider";
 import Layout from "../components/Layout";
 import Home from "./Home";
 import Login from "./Login";
-import Categories from "./Categories";
+import Categories from "./PageCategories";
 import Categorie from "./PageCategorie";
 import AddCategorie from "./AddCategorie";
 import EditCategorie from "./EditCategorie";

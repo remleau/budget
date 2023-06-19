@@ -64,7 +64,7 @@ function PageCategorie() {
 													<NavLink
 														to={ROUTES.GOAL.replace(":id", goal.id.toString())}
 													>
-														<p key={goal.id}>{goal.name}</p>
+														<span key={goal.id}>{goal.name}</span>
 													</NavLink>
 												</div>
 											);

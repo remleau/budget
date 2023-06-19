@@ -45,10 +45,29 @@
 
 		.goals-associated {
 			div {
+				position: relative;
 				padding: 0.25rem;
-				padding-bottom: 0.75rem;
-				margin-bottom: 0.75rem;
-				border-bottom: 1px solid var(--charcoal);
+
+				a {
+					text-decoration: inherit;
+				}
+
+				span {
+					display: flex;
+					align-items: center;
+					margin-left: 1rem;
+					font-weight: 300;
+
+					&:before {
+						position: absolute;
+						content: "";
+						display: block;
+						width: 0.75rem;
+						height: 1px;
+						left: 0;
+						background-color: var(--charcoal);
+					}
+				}
 			}
 		}
 	}
