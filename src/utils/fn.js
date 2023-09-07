@@ -7,3 +7,13 @@ export function daysToGo(date) {
 		</span>
 	);
 }
+
+export function convertDate(date) {
+	let newDate = new Intl.DateTimeFormat("fr-ca", {
+		month: "long",
+		day: "numeric",
+		year: "numeric",
+	}).format(new Date(date));
+
+	return <>{newDate}</>;
+}

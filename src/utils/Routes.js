@@ -1,6 +1,9 @@
 export const ROUTES = {
 	ROOT: "/",
 	EXPENSES: "/expenses",
+	EXPENSE: "/expense/:id",
+	ADDEXPENSE: "/expense/add",
+	EDITEXPENSE: "/expense/edit/:id",
 	STOCKS: "/stocks",
 	CATEGORIES: "/categories",
 	CATEGORIE: "/categorie/:id",

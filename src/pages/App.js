@@ -8,13 +8,21 @@ import { useGlobalContext } from "../utils/GlobalProvider";
 import Layout from "../components/Layout";
 import Home from "./Home";
 import Login from "./Login";
+
+import Profile from "./PageProfile";
+
+import Stocks from "./PageStocks";
+
+import Expenses from "./PageExpenses";
+import Expense from "./PageExpense";
+import AddExpense from "./PageAddExpense";
+import EditExpense from "./PageEditExpense";
+
 import Categories from "./PageCategories";
 import Categorie from "./PageCategorie";
-import AddCategorie from "./AddCategorie";
-import EditCategorie from "./EditCategorie";
-import Profile from "./PageProfile";
-import Stocks from "./PageStocks";
-import Expenses from "./PageStocks";
+import AddCategorie from "./PageAddCategorie";
+import EditCategorie from "./PageEditCategorie";
+
 import Goals from "./PageGoals";
 import Goal from "./PageGoal";
 import AddGoal from "./PageAddGoal";
@@ -35,8 +43,13 @@ function App() {
 					<Route index element={<Home />} />
 					<Route path={ROUTES.LOGIN} element={<Login />} />
 					<Route path={ROUTES.PROFILE} element={<Profile />} />
+
 					<Route path={ROUTES.STOCKS} element={<Stocks />} />
+
 					<Route path={ROUTES.EXPENSES} element={<Expenses />} />
+					<Route path={ROUTES.EXPENSE} element={<Expense />} />
+					<Route path={ROUTES.ADDEXPENSE} element={<AddExpense />} />
+					<Route path={ROUTES.EDITEXPENSE} element={<EditExpense />} />
 
 					<Route path={ROUTES.CATEGORIES} element={<Categories />} />
 					<Route path={ROUTES.CATEGORIE} element={<Categorie />} />

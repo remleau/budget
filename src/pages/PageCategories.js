@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { ROUTES } from "../utils/Routes";
 import { Mousewheel } from "swiper";
@@ -41,7 +41,7 @@ function PageCategories() {
 					<SwiperSlide>
 						<NavLink to={ROUTES.ADDCATEGORIE}>
 							<div className="swiper-card">
-								<div className="swiper-card-content">
+								<div className="swiper-card-content button-card">
 									<DynamicIcon size={40} name="CiSquarePlus" />
 									<p>Add a categorie</p>
 								</div>

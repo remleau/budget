@@ -1,25 +1,22 @@
 import { memo, useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-
 import { ROUTES } from "../utils/Routes";
+
 import useCategories from "../hooks/useCategories";
+import useGoals from "../hooks/useGoals";
+import useExpenses from "../hooks/useExpenses";
 
 import DynamicIcon from "../components/DynamicIcon";
-import useGoals from "../hooks/useGoals";
 
 function PageCategorie() {
 	const { id } = useParams();
-	const [goals, setGoals] = useState(false);
 	const { categorie } = useCategories(id);
-	const { getGoalsByCategories } = useGoals();
+	const { goals, getGoalsByCategories } = useGoals();
+	const { expenses, getExpensesByCategories } = useExpenses();
 
 	useEffect(() => {
-		async function associated_goals() {
-			const goals = await getGoalsByCategories(id);
-			setGoals(goals);
-		}
-
-		if (!goals) associated_goals();
+		getGoalsByCategories(id);
+		getExpensesByCategories(id);
 	}, [id]);
 
 	const style = {
@@ -52,7 +49,7 @@ function PageCategorie() {
 				</div>
 
 				<div className="page-content">
-					{goals && (
+					{goals != false && (
 						<div className="sidebar">
 							<div className="sidebar-content">
 								<div className="">
@@ -74,6 +71,18 @@ function PageCategorie() {
 							</div>
 						</div>
 					)}
+					<section className="page-content-container">
+						<h3>Lastest expenses to the category</h3>
+						{expenses?.map((goal) => {
+							return (
+								<div key={goal.id} className="">
+									<NavLink to={ROUTES.GOAL.replace(":id", goal.id.toString())}>
+										<span key={goal.id}>{goal.name}</span>
+									</NavLink>
+								</div>
+							);
+						})}
+					</section>
 				</div>
 			</div>
 		)

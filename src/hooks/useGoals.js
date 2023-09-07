@@ -1,9 +1,10 @@
 import { useCallback, useState, useEffect } from "react";
 import { useGlobalContext } from "../utils/GlobalProvider";
 
-function useGoals() {
+function useGoals(props = { goalId: 0, orderBy: "date" }) {
 	const { pb } = useGlobalContext();
 
+	const [goal, setGoal] = useState(null);
 	const [goals, setGoals] = useState(null);
 
 	const addGoal = useCallback(
@@ -63,11 +64,41 @@ function useGoals() {
 				{ $autoCancel: false }
 			);
 
-			if (result) setGoals(result);
+			if (result) {
+				if (props.sortBy == "date") {
+					result.sort(function (a, b) {
+						// Turn your strings into dates, and then subtract them
+						// to get a value that is either negative, positive, or zero.
+						return new Date(b.due_date) - new Date(a.due_date);
+					});
+				}
+
+				setGoals(result.reverse());
+			}
 		} catch (error) {
 			console.log("Error:", error);
 		}
 	}, [pb]);
+
+	const getGoal = useCallback(
+		async (goalId) => {
+			try {
+				const result = await pb.collection("goals").getFullList(
+					{
+						filter: `id ?~ "${goalId}"`,
+						expand: "categories",
+						sort: "-created",
+					},
+					{ $autoCancel: false }
+				);
+
+				if (result) setGoal(result.at(0));
+			} catch (error) {
+				console.log("Error:", error);
+			}
+		},
+		[pb]
+	);
 
 	const getGoalsByCategories = useCallback(
 		async (categories) => {
@@ -76,8 +107,8 @@ function useGoals() {
 					filter: `categories ?~ "${categories}"`,
 				});
 
-				if (result.length) {
-					return result;
+				if (result) {
+					setGoals(result);
 				}
 			} catch (error) {
 				console.log("Error:", error);
@@ -87,8 +118,8 @@ function useGoals() {
 	);
 
 	useEffect(() => {
-		getGoals();
-	}, [getGoals]);
+		if (props.goalId) getGoal(props.goalId);
+	}, []);
 
 	return {
 		addGoal,
@@ -97,6 +128,8 @@ function useGoals() {
 		deleteGoal,
 		getGoalsByCategories,
 		goals,
+		goal,
+		getGoal,
 	};
 }
 

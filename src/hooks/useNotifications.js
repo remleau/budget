@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import { ROUTES } from "../utils/Routes";
@@ -21,7 +21,7 @@ function useNotifications() {
 				setNotifications(() => <div>{data?.message}</div>);
 			}
 
-			if (response.status == 204) {
+			if (response.status === 204) {
 				setNotifications(() => <div>Record deleted</div>);
 			}
 
@@ -68,6 +68,22 @@ function useNotifications() {
 					}
 					break;
 
+				case "expenses":
+					if (method === "PATCH") {
+						setNotifications(() => (
+							<NavLink to={ROUTES.EXPENSE.replace(":id", data?.id.toString())}>
+								<div>Expense {data?.name} updated</div>
+							</NavLink>
+						));
+					} else {
+						setNotifications(() => (
+							<NavLink to={ROUTES.EXPENSE.replace(":id", data?.id.toString())}>
+								<div>Expense {data?.name} added</div>
+							</NavLink>
+						));
+					}
+					break;
+
 				default:
 					break;
 			}
@@ -76,9 +92,7 @@ function useNotifications() {
 		};
 	}, [method, notifications]);
 
-	return useMemo(() => {
-		return notifications;
-	});
+	return notifications;
 }
 
 export default useNotifications;

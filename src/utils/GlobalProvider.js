@@ -72,16 +72,17 @@ export const GlobalProvider = ({ children }) => {
 
 	const getCurrency = useCallback(async () => {
 		try {
-			const result = await fetch(
-				"https://api.freecurrencyapi.com/v1/latest/?apikey=" +
-					process.env.REACT_APP_CURRENCY_API_KEY +
-					"&currencies=" +
-					user.prefered_currency +
-					"&base_currency=" +
-					user.currency
-			).then((response) => response.json());
+			//const result = await fetch(
+			//	"https://api.freecurrencyapi.com/v1/latest/?apikey=" +
+			//		process.env.REACT_APP_CURRENCY_API_KEY +
+			//		"&currencies=" +
+			//		user.prefered_currency +
+			//		"&base_currency=" +
+			//		user.currency
+			//).then((response) => response.json());
+			//setCurrency(Object.values(result?.data)[0]);
 
-			setCurrency(Object.values(result?.data)[0]);
+			return 1;
 		} catch (error) {
 			console.log("Error:", error);
 		}

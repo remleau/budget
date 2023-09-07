@@ -26,11 +26,26 @@
 			align-items: center;
 			justify-content: center;
 
+			p {
+				font-size: 1.15rem;
+				font-weight: 400;
+				letter-spacing: 0.2px;
+				color: var(--charcoal);
+			}
+
 			&-content {
 				text-align: center;
 
 				svg {
-					margin-bottom: 0.5rem;
+					color: var(--charcoal);
+					margin-bottom: 0.75rem;
+				}
+
+				&.button-card {
+					p {
+						font-size: 1rem;
+						font-family: var(--font-family-secondary);
+					}
 				}
 			}
 

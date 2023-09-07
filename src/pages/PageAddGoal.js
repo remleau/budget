@@ -21,6 +21,7 @@ function PageAddGoal() {
 		validationSchema: Yup.object({
 			name: Yup.string().required("The name is required"),
 			money_goal: Yup.string().required("The money goal is required"),
+			due_date: Yup.date().required("The date is required"),
 		}),
 		async onSubmit(values) {
 			let result = await addGoal(values);

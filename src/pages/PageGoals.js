@@ -1,4 +1,4 @@
-import { memo, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { ROUTES } from "../utils/Routes";
 import { Mousewheel } from "swiper";
@@ -13,7 +13,13 @@ import { daysToGo } from "../utils/fn";
 
 function PageGoals() {
 	const swiperRef = useRef(null);
-	const { goals } = useGoals();
+	const { goals, getGoals } = useGoals({
+		sortBy: "date",
+	});
+
+	useEffect(() => {
+		getGoals();
+	}, []);
 
 	const style = {
 		backgroundImage:

@@ -14,7 +14,14 @@
 
 	&-content {
 		> div {
-			margin-bottom: 1.25rem;
+			> div {
+				margin-bottom: 1.15rem;
+				display: block;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
 
 			h3 {
 				font-size: 1.2rem;
@@ -23,7 +30,19 @@
 				margin-bottom: 1rem;
 			}
 
-			p,
+			p {
+				font-size: 1.1rem;
+				font-family: var(--font-family-secondary);
+				font-weight: 300;
+				color: var(--charcoal);
+				display: block;
+				line-height: 1.5em;
+
+				span {
+					font-weight: bold;
+				}
+			}
+
 			a {
 				font-size: 1.1rem;
 				font-family: var(--font-family-secondary);
@@ -33,13 +52,9 @@
 				line-height: 1.5em;
 
 				span {
-					margin-left: 0.5rem;
+					margin-right: 0.5rem;
 					font-weight: bold;
 				}
-			}
-
-			&:last-child {
-				margin-bottom: 0rem;
 			}
 		}
 

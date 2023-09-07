@@ -45,6 +45,8 @@ function FormGoal({ formik }) {
 					formik={formik}
 					name="due_date"
 					label={"Due date of your goal"}
+					touched={formik.touched.due_date}
+					error={formik.errors.due_date}
 				/>
 			</div>
 			<div className="form-col">

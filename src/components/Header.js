@@ -25,6 +25,10 @@ function Header() {
 	const isEditGoalPage = useMatch(ROUTES.EDITGOAL);
 	const isSingleGoalPage = useMatch(ROUTES.GOAL);
 
+	const isAddExpensePage = useMatch(ROUTES.ADDEXPENSE);
+	const isEditExpensePage = useMatch(ROUTES.EDITEXPENSE);
+	const isSingleExpensePage = useMatch(ROUTES.EXPENSE);
+
 	return (
 		<header>
 			<NavLink to={ROUTES.PROFILE} style={{ textDecoration: "none" }}>
@@ -62,7 +66,14 @@ function Header() {
 					</li>
 
 					<li>
-						<NavLink to={ROUTES.EXPENSES}>
+						<NavLink
+							to={ROUTES.EXPENSES}
+							className={
+								isAddExpensePage || isSingleExpensePage || isEditExpensePage
+									? "active"
+									: null
+							}
+						>
 							<CiVault size={18} />
 							<span>Expenses</span>
 						</NavLink>

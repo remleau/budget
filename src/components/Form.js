@@ -157,7 +157,14 @@ export const Select = ({
 	);
 };
 
-export const Datepicker = ({ name, label, instruction, formik }) => {
+export const Datepicker = ({
+	name,
+	label,
+	instruction,
+	touched,
+	error,
+	formik,
+}) => {
 	return (
 		<label htmlFor="" className="form-field">
 			<p>
@@ -171,13 +178,57 @@ export const Datepicker = ({ name, label, instruction, formik }) => {
 					selected={formik.values[name] && new Date(formik.values[name])}
 					onChange={(date) => formik.setFieldValue(name, date)}
 					dateFormat="dd/MM/yyyy"
-					required
 				/>
-				{formik.touched.birthdate && formik.errors.birthdate ? (
+				{touched && error && (
 					<div className="form-field-error">
-						<span>{formik.errors.birthdate}</span>
+						<span>{error}</span>
 					</div>
-				) : null}
+				)}
+			</div>
+		</label>
+	);
+};
+
+export const Radios = ({
+	onChange,
+	value,
+	touched,
+	error,
+	name,
+	type,
+	types,
+	disabled,
+	placeholder,
+	label,
+	instruction,
+}) => {
+	return (
+		<label htmlFor="" className="form-field">
+			<p>
+				{label}
+				{instruction && (
+					<span className="form-field-instruction">{instruction}</span>
+				)}
+			</p>
+			<div className="form-field-content">
+				{types &&
+					types.map((t) => (
+						<React.Fragment key={t}>
+							<input
+								type={type}
+								name={name}
+								className=""
+								onChange={onChange}
+								value={t}
+							/>
+							<p>{t}</p>
+						</React.Fragment>
+					))}
+				{touched && error && (
+					<div className="form-field-error">
+						<span>{error}</span>
+					</div>
+				)}
 			</div>
 		</label>
 	);
