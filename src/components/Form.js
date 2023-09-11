@@ -191,19 +191,16 @@ export const Datepicker = ({
 
 export const Radios = ({
 	onChange,
-	value,
 	touched,
 	error,
 	name,
 	type,
 	types,
-	disabled,
-	placeholder,
 	label,
 	instruction,
 }) => {
 	return (
-		<label htmlFor="" className="form-field">
+		<div className="form-field">
 			<p>
 				{label}
 				{instruction && (
@@ -211,25 +208,30 @@ export const Radios = ({
 				)}
 			</p>
 			<div className="form-field-content">
-				{types &&
-					types.map((t) => (
-						<React.Fragment key={t}>
-							<input
-								type={type}
-								name={name}
-								className=""
-								onChange={onChange}
-								value={t}
-							/>
-							<p>{t}</p>
-						</React.Fragment>
-					))}
+				<div className="radios">
+					{types &&
+						types.map((t) => (
+							<div className="radio" key={t}>
+								<input
+									type={type}
+									name={name}
+									className=""
+									onChange={onChange}
+									value={t}
+									id={t}
+								/>
+								<label htmlFor={t} key={t}>
+									<p>{t}</p>
+								</label>
+							</div>
+						))}
+				</div>
 				{touched && error && (
 					<div className="form-field-error">
 						<span>{error}</span>
 					</div>
 				)}
 			</div>
-		</label>
+		</div>
 	);
 };

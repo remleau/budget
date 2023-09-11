@@ -15,11 +15,13 @@ function PageAddExpense() {
 			price: "",
 			categories: [],
 			date: "",
+			type: "",
 		},
 		enableReinitialize: true,
 		validationSchema: Yup.object({
 			name: Yup.string().required("The name is required"),
-			price: Yup.string().required("The money goal is required"),
+			price: Yup.string().required("The price is required"),
+			type: Yup.string().required("The type is required"),
 		}),
 		async onSubmit(values) {
 			let result = await addExpense(values);

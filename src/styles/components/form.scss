@@ -62,7 +62,7 @@
 		margin: 0 -1rem;
 		margin-bottom: 1.75rem;
 
-		> label {
+		> .form-field {
 			margin: 0 1rem;
 			flex: 1 1 auto;
 		}
@@ -86,6 +86,47 @@
 			&:hover {
 				border: 1px solid rgba(65, 71, 84, 0.2);
 				box-shadow: 0px 0px 10px -5px rgba(65, 71, 84, 0.4);
+			}
+		}
+	}
+
+	.radios {
+		display: flex;
+		justify-content: space-between;
+		padding: 0.5rem 0rem;
+		margin: 0 -0.5rem;
+
+		.radio {
+			cursor: pointer;
+			flex: 1 1 auto;
+			margin: 0 0.5rem;
+
+			label {
+				text-align: center;
+				display: block;
+				padding: 0.5rem 0.75rem;
+				border: 1px solid var(--gray);
+			}
+
+			p {
+				padding: 0;
+				font-weight: 500;
+				cursor: pointer;
+				color: var(--gray);
+			}
+
+			input {
+				visibility: hidden;
+				opacity: 0;
+				display: none;
+
+				&:checked + label {
+					border: 1px solid var(--charcoal);
+
+					p {
+						color: var(--charcoal);
+					}
+				}
 			}
 		}
 	}
