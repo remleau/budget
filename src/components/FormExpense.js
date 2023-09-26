@@ -1,10 +1,12 @@
 import { memo } from "react";
 import { Datepicker, Input, Select, Radios } from "./Form";
 
+import useGoals from "../hooks/useGoals";
 import useCategories from "../hooks/useCategories";
 
 function FormExpense({ formik }) {
 	const { categories } = useCategories();
+	const { goals } = useGoals();
 
 	return (
 		<>
@@ -50,12 +52,23 @@ function FormExpense({ formik }) {
 			<div className="form-col">
 				<Select
 					onChange={formik.handleChange}
+					value={formik.values.goals}
+					touched={formik.touched.goals}
+					error={formik.errors.goals}
+					name="goals"
+					label={"Goals"}
+					options={goals}
+				/>
+			</div>
+			<div className="form-col">
+				<Select
+					onChange={formik.handleChange}
 					value={formik.values.categories}
 					touched={formik.touched.categories}
 					error={formik.errors.categories}
 					name="categories"
-					label={"Choose a categorie"}
-					categories={categories}
+					label={"Catégories"}
+					options={categories}
 				/>
 			</div>
 		</>

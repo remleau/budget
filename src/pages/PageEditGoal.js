@@ -6,6 +6,7 @@ import useGoals from "../hooks/useGoals";
 
 import DynamicIcon from "../components/DynamicIcon";
 import FormGoal from "../components/FormGoal";
+import Hero from "../components/Hero";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -14,17 +15,15 @@ function PageEditGoal() {
 	const { id } = useParams();
 	const navigate = useNavigate();
 
-	const { goals, updateGoal, deleteGoal } = useGoals();
-
-	const singleGoal = goals?.filter((cat) => cat.id === id).at(0);
+	const { goal, updateGoal, deleteGoal } = useGoals({ goalId: id });
 
 	const formik = useFormik({
 		initialValues: {
-			name: singleGoal?.name || "",
-			money_goal: singleGoal?.money_goal || "",
-			categories: singleGoal?.categories || [],
-			description: singleGoal?.description || "",
-			due_date: singleGoal?.due_date || "",
+			name: goal?.name || "",
+			money_goal: goal?.money_goal || "",
+			categories: goal?.categories || [],
+			description: goal?.description || "",
+			due_date: goal?.due_date || "",
 		},
 		enableReinitialize: true,
 		validationSchema: Yup.object({
@@ -32,7 +31,7 @@ function PageEditGoal() {
 			money_goal: Yup.string().required("The money goal is required"),
 		}),
 		async onSubmit(values) {
-			await updateGoal(singleGoal.id, values);
+			await updateGoal(goal.id, values);
 		},
 	});
 
@@ -53,21 +52,17 @@ function PageEditGoal() {
 
 	return (
 		<div className="page add-categorie">
-			<div className="hero" style={style}>
-				<div className="hero-content">
-					<h1>
-						<DynamicIcon name={formik.values.icon} size={40} />
-						Edit {formik.values.name} goal
-					</h1>
-				</div>
-				<div className="hero-actions">
-					<button onClick={() => removeGoal(singleGoal?.id)}>
+			<Hero
+				title={`Edit ${formik.values.name} goal`}
+				style={style}
+				actions={
+					<button onClick={() => removeGoal(goal?.id)}>
 						<DynamicIcon size={18} name="CiTrash" />
-						Delete {singleGoal?.name} goal
+						Delete {goal?.name} goal
 					</button>
-				</div>
-				<div className="overlay"></div>
-			</div>
+				}
+			/>
+
 			<section className="content">
 				<form
 					onSubmit={formik.handleSubmit}
@@ -85,6 +80,11 @@ function PageEditGoal() {
 						>
 							Update
 						</button>
+						{new Date(goal?.due_date).getTime() < new Date().getTime() && (
+							<button type="submit" className={`btn`}>
+								Archive it
+							</button>
+						)}
 					</div>
 				</form>
 			</section>

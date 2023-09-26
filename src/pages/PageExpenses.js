@@ -1,6 +1,7 @@
-import { memo, useEffect, useRef } from "react";
+import { memo, useEffect, useRef, useMemo, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ROUTES } from "../utils/Routes";
+
 import { Mousewheel } from "swiper";
 
 import useExpenses from "../hooks/useExpenses";
@@ -8,7 +9,9 @@ import useExpenses from "../hooks/useExpenses";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
+import Table from "../components/Table";
 import DynamicIcon from "../components/DynamicIcon";
+import Hero from "../components/Hero";
 
 function PageExpenses() {
 	const swiperRef = useRef(null);
@@ -21,6 +24,32 @@ function PageExpenses() {
 		getExpenses();
 	}, []);
 
+	const columns = useMemo(
+		() => [
+			{
+				accessorKey: "name",
+				header: "Name",
+				size: 25,
+			},
+			{
+				accessorKey: "price",
+				header: "Price",
+				size: 25,
+			},
+			{
+				accessorKey: "date",
+				header: "Date",
+				size: 25,
+			},
+			{
+				accessorKey: "type",
+				header: "Type",
+				size: 25,
+			},
+		],
+		[]
+	);
+
 	const style = {
 		backgroundImage:
 			"url(https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)",
@@ -28,14 +57,8 @@ function PageExpenses() {
 
 	return (
 		<div className="page expenses">
-			<div className="hero" style={style}>
-				<div className="hero-content">
-					<h1>
-						My expenses <sup>({expenses?.length})</sup>
-					</h1>
-				</div>
-				<div className="overlay"></div>
-			</div>
+			<Hero title={`My expenses`} length={expenses?.length} style={style} />
+
 			<section className="slider">
 				<Swiper
 					ref={swiperRef}
@@ -71,6 +94,11 @@ function PageExpenses() {
 						);
 					})}
 				</Swiper>
+			</section>
+			<section className="content">
+				<h3>Lastest expenses</h3>
+
+				<Table expenses={expenses} columns={columns} />
 			</section>
 		</div>
 	);

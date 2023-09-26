@@ -3,17 +3,21 @@ import { memo } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
+import useQuery from "../hooks/useQuery";
 import useExpenses from "../hooks/useExpenses";
 import FormExpense from "../components/FormExpense";
+import Hero from "../components/Hero";
 
 function PageAddExpense() {
 	const { addExpense } = useExpenses();
+	const query = useQuery();
 
 	const formik = useFormik({
 		initialValues: {
 			name: "",
 			price: "",
-			categories: [],
+			goals: query.get("goals")?.split(",") || [],
+			categories: query.get("categories")?.split(",") || [],
 			date: "",
 			type: "",
 		},
@@ -44,12 +48,8 @@ function PageAddExpense() {
 
 	return (
 		<div className="page add-goal">
-			<div className="hero" style={style}>
-				<div className="hero-content">
-					<h1>Add a new expense</h1>
-				</div>
-				<div className="overlay"></div>
-			</div>
+			<Hero title="Add a new expense" style={style} />
+
 			<section className="content">
 				<form
 					onSubmit={formik.handleSubmit}

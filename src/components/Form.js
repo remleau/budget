@@ -118,7 +118,7 @@ export const Select = ({
 	placeholder,
 	label,
 	instruction,
-	categories,
+	options,
 }) => {
 	return (
 		<label htmlFor="" className="form-field">
@@ -136,10 +136,10 @@ export const Select = ({
 					disabled={disabled}
 					multiple
 				>
-					<option value="" label="Select a categorie(s)">
-						Select a categorie(s)
+					<option value="" label={`Select a ${label}`}>
+						Select a {label}(s)
 					</option>
-					{categories?.map((cat) => {
+					{options?.map((cat) => {
 						return (
 							<option key={cat?.id} value={cat?.id} label={cat?.name}>
 								{cat?.name}

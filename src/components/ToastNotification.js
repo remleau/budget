@@ -27,7 +27,11 @@ function ToastNotification() {
 		notifications && (
 			<div
 				className="toast-notification"
-				style={showNotification ? { opacity: 1 } : { opacity: 0 }}
+				style={
+					showNotification
+						? { opacity: 1 }
+						: { opacity: 0, visibility: "hidden" }
+				}
 			>
 				<div
 					className="toast-notification-close"

@@ -5,6 +5,8 @@ import { Input } from "../components/Form";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
+import Hero from "../components/Hero";
+
 function PageProfile() {
 	const { user, update_user } = useGlobalContext();
 
@@ -38,12 +40,8 @@ function PageProfile() {
 
 	return (
 		<div className="page profile">
-			<div className="hero" style={style}>
-				<div className="hero-content">
-					<h1>Personal information</h1>
-				</div>
-				<div className="overlay"></div>
-			</div>
+			<Hero title="Personal information" style={style} />
+
 			<section className="content">
 				<form
 					onSubmit={formik.handleSubmit}

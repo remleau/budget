@@ -118,6 +118,8 @@ function useGoals(props = { goalId: 0, orderBy: "date" }) {
 	);
 
 	useEffect(() => {
+		getGoals();
+
 		if (props.goalId) getGoal(props.goalId);
 	}, []);
 

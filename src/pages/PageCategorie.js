@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState, useMemo } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { ROUTES } from "../utils/Routes";
 
@@ -6,7 +6,9 @@ import useCategories from "../hooks/useCategories";
 import useGoals from "../hooks/useGoals";
 import useExpenses from "../hooks/useExpenses";
 
+import Table from "../components/Table";
 import DynamicIcon from "../components/DynamicIcon";
+import Hero from "../components/Hero";
 
 function PageCategorie() {
 	const { id } = useParams();
@@ -17,7 +19,7 @@ function PageCategorie() {
 	useEffect(() => {
 		getGoalsByCategories(id);
 		getExpensesByCategories(id);
-	}, [id]);
+	}, [id, categorie]);
 
 	const style = {
 		backgroundImage: `url(${
@@ -27,26 +29,48 @@ function PageCategorie() {
 		})`,
 	};
 
+	const columns = useMemo(
+		() => [
+			{
+				accessorKey: "name",
+				header: "Name",
+				size: 25,
+			},
+			{
+				accessorKey: "price",
+				header: "Price",
+				size: 25,
+			},
+			{
+				accessorKey: "date",
+				header: "Date",
+				size: 25,
+			},
+			{
+				accessorKey: "type",
+				header: "Type",
+				size: 25,
+			},
+		],
+		[]
+	);
+
 	return (
 		categorie && (
 			<div className="page categories">
-				<div className="hero" style={style}>
-					<div className="hero-content">
-						<h1>
-							<DynamicIcon name={categorie.icon} size={40} />
-							{categorie.name} categorie
-						</h1>
-					</div>
-					<div className="hero-actions">
+				<Hero
+					title={`${categorie.name} categorie`}
+					iconName={categorie.icon}
+					style={style}
+					actions={
 						<NavLink
 							to={ROUTES.EDITCATEGORIE.replace(":id", categorie.id.toString())}
 						>
 							<DynamicIcon size={18} name="CiPen" />
 							Edit {categorie.name} categrorie
 						</NavLink>
-					</div>
-					<div className="overlay"></div>
-				</div>
+					}
+				/>
 
 				<div className="page-content">
 					{goals != false && (
@@ -68,20 +92,26 @@ function PageCategorie() {
 										})}
 									</div>
 								</div>
+								<div className="sidebar-actions">
+									<NavLink
+										to={ROUTES.ADDGOAL + "?categories=" + id}
+										className={"btn add"}
+									>
+										<span>Add a goal</span>
+									</NavLink>
+								</div>
 							</div>
 						</div>
 					)}
-					<section className="page-content-container">
+					<section
+						className={
+							goals != false
+								? "page-content-container"
+								: "page-content-container full"
+						}
+					>
 						<h3>Lastest expenses to the category</h3>
-						{expenses?.map((goal) => {
-							return (
-								<div key={goal.id} className="">
-									<NavLink to={ROUTES.GOAL.replace(":id", goal.id.toString())}>
-										<span key={goal.id}>{goal.name}</span>
-									</NavLink>
-								</div>
-							);
-						})}
+						<Table expenses={expenses} columns={columns} />
 					</section>
 				</div>
 			</div>

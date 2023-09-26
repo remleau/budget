@@ -6,6 +6,8 @@ import useCategories from "../hooks/useCategories";
 
 import DynamicIcon from "../components/DynamicIcon";
 import FormCategorie from "../components/FormCategorie";
+import Hero from "../components/Hero";
+
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -50,21 +52,18 @@ function PageEditCategorie() {
 
 	return (
 		<div className="page add-categorie">
-			<div className="hero" style={style}>
-				<div className="hero-content">
-					<h1>
-						<DynamicIcon name={formik.values.icon} size={40} />
-						Edit {formik.values.name} categorie
-					</h1>
-				</div>
-				<div className="hero-actions">
+			<Hero
+				title={`Edit ${formik.values.name} categorie`}
+				iconName={formik.values.icon}
+				style={style}
+				actions={
 					<button onClick={() => removeCat(singleCategorie?.id)}>
 						<DynamicIcon size={18} name="CiTrash" />
 						Delete {singleCategorie?.name} categrorie
 					</button>
-				</div>
-				<div className="overlay"></div>
-			</div>
+				}
+			/>
+
 			<section className="content">
 				<form
 					onSubmit={formik.handleSubmit}

@@ -57,7 +57,7 @@ function FormGoal({ formik }) {
 					error={formik.errors.categories}
 					name="categories"
 					label={"Choose a categorie"}
-					categories={categories}
+					options={categories}
 				/>
 			</div>
 		</>

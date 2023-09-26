@@ -9,6 +9,8 @@ import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import DynamicIcon from "../components/DynamicIcon";
+import Hero from "../components/Hero";
+
 import { daysToGo } from "../utils/fn";
 
 function PageGoals() {
@@ -28,14 +30,8 @@ function PageGoals() {
 
 	return (
 		<div className="page goals">
-			<div className="hero" style={style}>
-				<div className="hero-content">
-					<h1>
-						My goals <sup>({goals?.length})</sup>
-					</h1>
-				</div>
-				<div className="overlay"></div>
-			</div>
+			<Hero title="My goals" length={goals?.length} style={style} />
+
 			<section className="slider">
 				<Swiper
 					ref={swiperRef}
@@ -62,7 +58,11 @@ function PageGoals() {
 									<div className="swiper-card">
 										<div className="swiper-card-content">
 											<p className="days-to-go">
-												In {daysToGo(goal.due_date)} days
+												{new Date(goal.due_date).getTime() <
+												new Date().getTime()
+													? "Past"
+													: "In"}
+												{daysToGo(goal.due_date)} days
 											</p>
 											<p>{goal.name}</p>
 										</div>

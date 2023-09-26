@@ -25,7 +25,7 @@ function useNotifications() {
 				setNotifications(() => <div>Record deleted</div>);
 			}
 
-			//console.log("notif", response, method, data);
+			//console.log("notif", method);
 
 			switch (data?.collectionName) {
 				case "categories":

@@ -25,13 +25,6 @@ function PageGoal() {
 	let savings_price = savings?.map((s) => (savings_amount += s.price));
 
 	const categories = goal?.expand?.categories;
-	const dueDate =
-		goal?.due_date &&
-		new Intl.DateTimeFormat("fr-ca", {
-			month: "long",
-			day: "numeric",
-			year: "numeric",
-		}).format(new Date(goal?.due_date));
 
 	useEffect(() => {
 		getExpensesByGoals(id);

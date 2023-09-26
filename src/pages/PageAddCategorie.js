@@ -6,6 +6,8 @@ import * as Yup from "yup";
 import useCategories from "../hooks/useCategories";
 import FormCategorie from "../components/FormCategorie";
 
+import Hero from "../components/Hero";
+
 function PageAddCategorie() {
 	const { addCategorie } = useCategories();
 
@@ -41,12 +43,8 @@ function PageAddCategorie() {
 
 	return (
 		<div className="page add-categorie">
-			<div className="hero" style={style}>
-				<div className="hero-content">
-					<h1>Add a new categorie</h1>
-				</div>
-				<div className="overlay"></div>
-			</div>
+			<Hero title={`Add a new categorie`} style={style} />
+
 			<section className="content">
 				<form
 					onSubmit={formik.handleSubmit}

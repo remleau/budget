@@ -3,17 +3,21 @@ import { memo } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
+import useQuery from "../hooks/useQuery";
 import useGoals from "../hooks/useGoals";
+
+import Hero from "../components/Hero";
 import FormGoal from "../components/FormGoal";
 
 function PageAddGoal() {
 	const { addGoal } = useGoals();
+	const query = useQuery();
 
 	const formik = useFormik({
 		initialValues: {
 			name: "",
 			money_goal: "",
-			categories: [],
+			categories: [query.get("categories")] || [],
 			description: "",
 			due_date: "",
 		},
@@ -44,12 +48,8 @@ function PageAddGoal() {
 
 	return (
 		<div className="page add-goal">
-			<div className="hero" style={style}>
-				<div className="hero-content">
-					<h1>Add a new goal</h1>
-				</div>
-				<div className="overlay"></div>
-			</div>
+			<Hero title="Add a new goal" style={style} />
+
 			<section className="content">
 				<form
 					onSubmit={formik.handleSubmit}

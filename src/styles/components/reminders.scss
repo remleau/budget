@@ -1,0 +1,55 @@
+.reminders {
+	position: absolute;
+	top: 1.5rem;
+	right: 1.5rem;
+	z-index: 1;
+
+	&-count {
+		position: absolute;
+		background-color: var(--gray);
+		color: var(--sand);
+		padding: 0.25rem;
+		border-radius: 50%;
+		font-size: 0.625rem;
+		top: -0.5rem;
+		right: -0.5rem;
+	}
+
+	&-menu {
+		position: relative;
+		display: flex;
+		align-items: center;
+		background-color: var(--sand);
+		border-radius: 50%;
+		padding: 0.4rem;
+		box-shadow: 3px 0px 10px -5px rgba(65, 71, 84, 0.4);
+		cursor: pointer;
+		z-index: 3;
+	}
+
+	&-content {
+		position: fixed;
+		top: -1.5rem;
+		right: -1.5rem;
+		box-shadow: 3px 0px 10px -5px rgba(65, 71, 84, 0.4);
+		padding: 1.5rem;
+		margin-top: 1.5rem;
+		z-index: 2;
+
+		width: 35vw;
+		display: block;
+		height: 100vh;
+		background-color: var(--sand);
+		transform: translateX(100%);
+
+		transition: all ease-out 0.25s;
+
+		h3 {
+			font-size: 1.25rem;
+		}
+
+		&.openReminders {
+			transform: translateX(0%);
+		}
+	}
+}

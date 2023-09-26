@@ -9,6 +9,7 @@ import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import DynamicIcon from "../components/DynamicIcon";
+import Hero from "../components/Hero";
 
 function PageCategories() {
 	const swiperRef = useRef(null);
@@ -21,14 +22,8 @@ function PageCategories() {
 
 	return (
 		<div className="page categories">
-			<div className="hero" style={style}>
-				<div className="hero-content">
-					<h1>
-						My categories <sup>({categories?.length})</sup>
-					</h1>
-				</div>
-				<div className="overlay"></div>
-			</div>
+			<Hero title={`My categories`} length={categories?.length} style={style} />
+
 			<section className="slider">
 				<Swiper
 					ref={swiperRef}
