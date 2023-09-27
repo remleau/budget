@@ -28,10 +28,20 @@ function Login() {
 				<h2>Sign Up to your budget</h2>
 				<form className="form" onSubmit={handleOnSubmit}>
 					<div className="form-field-content">
-						<input placeholder="Email" type="email" ref={emailRef} />
+						<input
+							placeholder="Email"
+							type="email"
+							defaultValue="test@test.test"
+							ref={emailRef}
+						/>
 					</div>
 					<div className="form-field-content">
-						<input placeholder="Password" type="password" ref={passwordRef} />
+						<input
+							placeholder="Password"
+							type="password"
+							defaultValue={1234567890}
+							ref={passwordRef}
+						/>
 					</div>
 
 					<div className="form-actions">

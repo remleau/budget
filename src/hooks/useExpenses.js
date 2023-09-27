@@ -138,7 +138,7 @@ function useExpenses(props = { expenseId: 0, orderBy: "date" }) {
 
 	useEffect(() => {
 		if (props.expenseId) getExpense(props.expenseId);
-	}, [getExpenses]);
+	}, []);
 
 	return {
 		addExpense,
@@ -150,6 +150,7 @@ function useExpenses(props = { expenseId: 0, orderBy: "date" }) {
 		expenses,
 		expense,
 		getExpense,
+		setExpenses,
 	};
 }
 

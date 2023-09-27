@@ -8,11 +8,16 @@
 		position: absolute;
 		background-color: var(--gray);
 		color: var(--sand);
-		padding: 0.25rem;
 		border-radius: 50%;
 		font-size: 0.625rem;
 		top: -0.5rem;
 		right: -0.5rem;
+		width: 20px;
+		height: 20px;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	&-menu {

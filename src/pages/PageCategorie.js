@@ -10,16 +10,21 @@ import Table from "../components/Table";
 import DynamicIcon from "../components/DynamicIcon";
 import Hero from "../components/Hero";
 
+import useCurrency from "../hooks/useCurrency";
+
 function PageCategorie() {
 	const { id } = useParams();
 	const { categorie } = useCategories(id);
 	const { goals, getGoalsByCategories } = useGoals();
 	const { expenses, getExpensesByCategories } = useExpenses();
+	const { convertPrice } = useCurrency();
 
 	useEffect(() => {
 		getGoalsByCategories(id);
 		getExpensesByCategories(id);
 	}, [id, categorie]);
+
+	const total = expenses?.map((e) => e.price).reduce((a, b) => a + b, 0);
 
 	const style = {
 		backgroundImage: `url(${
@@ -110,7 +115,11 @@ function PageCategorie() {
 								: "page-content-container full"
 						}
 					>
-						<h3>Lastest expenses to the category</h3>
+						<div className="page-content-container-title">
+							<h3>Lastest expenses to the category</h3>
+							<h3>Total: {convertPrice(total)}</h3>
+						</div>
+
 						<Table expenses={expenses} columns={columns} />
 					</section>
 				</div>
