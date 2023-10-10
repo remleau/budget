@@ -23,8 +23,10 @@ function PageGoal() {
 	let goods = expenses?.filter((e) => e.type == "goods");
 	let payment = expenses?.filter((e) => e.type == "payment");
 
-	let savings_amount = 0;
-	let savings_price = savings?.map((s) => (savings_amount += s.price));
+	const total_savings = savings?.map((e) => e.price).reduce((a, b) => a + b, 0);
+	const total_stocks = stocks?.map((e) => e.price).reduce((a, b) => a + b, 0);
+	const total_goods = goods?.map((e) => e.price).reduce((a, b) => a + b, 0);
+	const total_payment = payment?.map((e) => e.price).reduce((a, b) => a + b, 0);
 
 	const categories = goal?.expand?.categories;
 
@@ -93,7 +95,7 @@ function PageGoal() {
 									<p>Money Goal:</p>
 									<p>
 										<span>
-											{convertPrice(savings_amount)} /{" "}
+											{convertPrice(total_savings)} /{" "}
 											{convertPrice(goal?.money_goal)}
 										</span>
 									</p>
@@ -138,7 +140,10 @@ function PageGoal() {
 						<div className="page-content-contributions">
 							{Boolean(savings?.length) && (
 								<div className="contributions">
-									<h3>Lastest contributions to the goal</h3>
+									<div className="contributions-title">
+										<h3>Lastest contributions to the goal</h3>
+										<h3>Total: {convertPrice(total_savings)}</h3>
+									</div>
 
 									<Table columns={columns} expenses={savings} />
 								</div>
@@ -146,7 +151,10 @@ function PageGoal() {
 
 							{Boolean(payment?.length) && (
 								<div className="contributions">
-									<h3>Lastest payment to the goal</h3>
+									<div className="contributions-title">
+										<h3>Lastest payment to the goal</h3>
+										<h3>Total: {convertPrice(total_payment)}</h3>
+									</div>
 
 									<Table columns={columns} expenses={payment} />
 								</div>
@@ -154,16 +162,20 @@ function PageGoal() {
 
 							{Boolean(goods?.length) && (
 								<div className="contributions">
-									<h3>Lastest goods purchased for the goal</h3>
-
+									<div className="contributions-title">
+										<h3>Lastest goods purchased for the goal</h3>
+										<h3>Total: {convertPrice(total_goods)}</h3>
+									</div>
 									<Table columns={columns} expenses={goods} />
 								</div>
 							)}
 
 							{Boolean(stocks?.length) && (
 								<div className="contributions">
-									<h3>Lastest stocks purchased for the goal</h3>
-
+									<div className="contributions-title">
+										<h3>Lastest stocks purchased for the goal</h3>
+										<h3>Total: {convertPrice(total_stocks)}</h3>
+									</div>
 									<Table columns={columns} expenses={stocks} />
 								</div>
 							)}

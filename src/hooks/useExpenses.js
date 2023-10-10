@@ -2,7 +2,7 @@ import { useCallback, useState, useEffect } from "react";
 import { useGlobalContext } from "../utils/GlobalProvider";
 
 function useExpenses(props = { expenseId: 0, orderBy: "date" }) {
-	const { pb } = useGlobalContext();
+	const { pb, setPaged, paged } = useGlobalContext();
 
 	const [expense, setExpense] = useState(null);
 	const [expenses, setExpenses] = useState(null);
@@ -136,6 +136,39 @@ function useExpenses(props = { expenseId: 0, orderBy: "date" }) {
 		[pb]
 	);
 
+	const getExpensesByMonths = useCallback(
+		async (data) => {
+			try {
+				if (data.paged) {
+					const result = await pb
+						.collection("expenses")
+						.getList(data.paged.page, data.paged.nbPerPage, {
+							filter: `date >= "${data.start.toISOString()}" && date <= "${data.end.toISOString()}"`,
+						});
+
+					setPaged({
+						page: result.page,
+						nbPerPage: paged.nbPerPage,
+						totalPages: result.totalPages,
+					});
+
+					return setExpenses(result.items);
+				}
+
+				const result = await pb.collection("expenses").getFullList({
+					filter: `date >= "${data.start.toISOString()}" && date <= "${data.end.toISOString()}"`,
+				});
+
+				if (result) {
+					setExpenses(result);
+				}
+			} catch (error) {
+				console.log("Error:", error);
+			}
+		},
+		[pb]
+	);
+
 	useEffect(() => {
 		if (props.expenseId) getExpense(props.expenseId);
 	}, []);
@@ -147,6 +180,7 @@ function useExpenses(props = { expenseId: 0, orderBy: "date" }) {
 		deleteExpense,
 		getExpensesByCategories,
 		getExpensesByGoals,
+		getExpensesByMonths,
 		expenses,
 		expense,
 		getExpense,

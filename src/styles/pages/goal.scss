@@ -6,6 +6,12 @@
 
 		.contributions {
 			margin-bottom: 3rem;
+
+			&-title {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+			}
 		}
 	}
 }

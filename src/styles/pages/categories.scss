@@ -4,6 +4,11 @@
 		padding-left: 5rem;
 	}
 
+	.content {
+		padding: 0rem 5rem;
+		margin-bottom: 5rem;
+	}
+
 	.swiper {
 		&-slide {
 			width: 20%;
@@ -57,5 +62,16 @@
 
 	.table {
 		margin-top: 2rem;
+	}
+
+	.content {
+		h3 {
+			margin-bottom: 1.75rem;
+
+			font-family: var(--font-family-main);
+			color: var(--gray);
+			font-weight: 500;
+			font-size: 1.35rem;
+		}
 	}
 }

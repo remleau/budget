@@ -27,6 +27,8 @@ export const GlobalProvider = ({ children }) => {
 	const [token, setToken] = useState(pb.authStore.token);
 	const [user, setUser] = useState(pb.authStore.model);
 	const [currency, setCurrency] = useState(1);
+	const [totalSavings, setTotalSavings] = useState(0);
+	const [paged, setPaged] = useState({ page: 1, nbPerPage: 50, totalPages: 1 });
 
 	useEffect(() => {
 		return pb.authStore.onChange((token, model) => {
@@ -72,17 +74,18 @@ export const GlobalProvider = ({ children }) => {
 
 	const getCurrency = useCallback(async () => {
 		try {
-			//const result = await fetch(
-			//	"https://api.freecurrencyapi.com/v1/latest/?apikey=" +
-			//		process.env.REACT_APP_CURRENCY_API_KEY +
-			//		"&currencies=" +
-			//		user.prefered_currency +
-			//		"&base_currency=" +
-			//		user.currency
-			//).then((response) => response.json());
-			//setCurrency(Object.values(result?.data)[0]);
+			const result = await fetch(
+				"https://api.freecurrencyapi.com/v1/latest/?apikey=" +
+					process.env.REACT_APP_CURRENCY_API_KEY +
+					"&currencies=" +
+					user.prefered_currency +
+					"&base_currency=" +
+					user.currency
+			).then((response) => response.json());
 
-			return 1;
+			setCurrency(Object.values(result?.data)[0]);
+
+			//return 1;
 		} catch (error) {
 			console.log("Error:", error);
 		}
@@ -100,6 +103,10 @@ export const GlobalProvider = ({ children }) => {
 		token,
 		pb,
 		update_user,
+		totalSavings,
+		setTotalSavings,
+		paged,
+		setPaged,
 	};
 
 	return (

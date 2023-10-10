@@ -38,7 +38,7 @@
 		right: -1.5rem;
 		box-shadow: 3px 0px 10px -5px rgba(65, 71, 84, 0.4);
 		padding: 1.5rem;
-		margin-top: 1.5rem;
+		margin: 1.5rem;
 		z-index: 2;
 
 		width: 35vw;
@@ -51,10 +51,58 @@
 
 		h3 {
 			font-size: 1.25rem;
+			color: var(--charcoal);
+			margin-top: 0.5rem;
+			margin-bottom: 2rem;
 		}
 
 		&.openReminders {
 			transform: translateX(0%);
+		}
+
+		.reminder {
+			position: relative;
+			margin: 1.5rem 0rem;
+			padding: 1.5rem;
+			box-shadow: 3px 0px 10px -5px rgba(65, 71, 84, 0.6);
+			border: 1px solid var(--gray);
+			border-radius: 3px;
+			display: flex;
+			align-items: center;
+
+			p {
+				font-family: var(--font-family-secondary);
+				letter-spacing: 1px;
+
+				font-size: 1rem;
+				font-weight: 100;
+				color: var(--charcoal);
+			}
+
+			a {
+				font-family: var(--font-family-secondary);
+
+				text-decoration: none;
+				color: var(--charcoal);
+			}
+
+			.archive {
+				position: absolute;
+				right: 0;
+				height: 100%;
+				width: 50px;
+				cursor: pointer;
+
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				background-color: var(--matte);
+
+				svg {
+					fill: var(--sand);
+				}
+			}
 		}
 	}
 }

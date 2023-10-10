@@ -20,8 +20,8 @@ function PageCategorie() {
 	const { convertPrice } = useCurrency();
 
 	useEffect(() => {
-		getGoalsByCategories(id);
 		getExpensesByCategories(id);
+		getGoalsByCategories(id);
 	}, [id, categorie]);
 
 	const total = expenses?.map((e) => e.price).reduce((a, b) => a + b, 0);

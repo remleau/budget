@@ -6,7 +6,7 @@ import "../styles/index.scss";
 import { useGlobalContext } from "../utils/GlobalProvider";
 
 import Layout from "../components/Layout";
-import Home from "./Home";
+import Home from "./PageHome";
 import Login from "./Login";
 
 import Profile from "./PageProfile";

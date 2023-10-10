@@ -121,7 +121,7 @@ function useGoals(props = { goalId: 0, orderBy: "date" }) {
 		getGoals();
 
 		if (props.goalId) getGoal(props.goalId);
-	}, []);
+	}, [props.goalId]);
 
 	return {
 		addGoal,

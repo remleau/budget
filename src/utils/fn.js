@@ -21,3 +21,17 @@ export function convertDate(date) {
 
 	return <>{newDate}</>;
 }
+
+export function getMonths() {
+	const monthData = [];
+	for (let month = 0; month < 12; month++) {
+		const monthName = new Date(0, month - 1).toLocaleString("default", {
+			month: "long",
+		});
+		monthData.push({
+			name: monthName.charAt(0).toUpperCase() + monthName.slice(1),
+			number: month,
+		});
+	}
+	return monthData;
+}

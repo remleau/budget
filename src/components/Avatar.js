@@ -3,7 +3,7 @@ import { useGlobalContext } from "../utils/GlobalProvider";
 import useCurrency from "../hooks/useCurrency";
 
 function Avatar() {
-	const { user } = useGlobalContext();
+	const { user, totalSavings } = useGlobalContext();
 	const { convertPrice } = useCurrency();
 
 	return (
@@ -14,7 +14,10 @@ function Avatar() {
 					<p>{user.name}</p>
 				</div>
 				<div className="avatar-cash">
-					<p>Total cash: {convertPrice(user.monthly_income)}</p>
+					<p>
+						Savings of this month:{" "}
+						{convertPrice(user.monthly_income - totalSavings)}
+					</p>
 				</div>
 			</div>
 		</div>

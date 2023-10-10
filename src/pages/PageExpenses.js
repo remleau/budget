@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef, useMemo, useState } from "react";
+import { memo, useRef, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import { ROUTES } from "../utils/Routes";
 
@@ -16,13 +16,7 @@ import Hero from "../components/Hero";
 function PageExpenses() {
 	const swiperRef = useRef(null);
 
-	const { expenses, getExpenses } = useExpenses({
-		sortBy: "date",
-	});
-
-	useEffect(() => {
-		getExpenses();
-	}, []);
+	const { expenses, setExpenses } = useExpenses();
 
 	const columns = useMemo(
 		() => [
@@ -96,9 +90,13 @@ function PageExpenses() {
 				</Swiper>
 			</section>
 			<section className="content">
-				<h3>Lastest expenses</h3>
+				<h3>Lastest expenses of this month</h3>
 
-				<Table expenses={expenses} columns={columns} />
+				<Table
+					expenses={expenses}
+					setExpenses={setExpenses}
+					columns={columns}
+				/>
 			</section>
 		</div>
 	);

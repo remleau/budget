@@ -59,4 +59,49 @@
 		font-weight: 400;
 		font-family: var(--font-family-secondary);
 	}
+
+	&-filters {
+		padding: 1.25rem 2rem;
+
+		display: flex;
+		justify-content: space-between;
+
+		border-bottom: 1px solid #fff;
+
+		select {
+			background-color: var(--sand);
+			width: 175px;
+			padding: 0.5rem;
+			border-radius: 3px;
+
+			outline: none;
+			margin-right: 1.25rem;
+		}
+
+		h3 {
+			margin-bottom: 0 !important;
+		}
+	}
+
+	&-paged {
+		.pagination {
+			padding: 1.25rem 2rem;
+			border-top: 1px solid #fff;
+
+			button {
+				border: 1px solid var(--charcoal);
+				background-color: var(--sand);
+
+				cursor: pointer;
+				padding: 0.5rem;
+				margin-right: 1rem;
+				border-radius: 3px;
+
+				&.active {
+					background-color: var(--charcoal);
+					color: var(--sand);
+				}
+			}
+		}
+	}
 }

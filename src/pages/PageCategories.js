@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef } from "react";
+import { memo, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { ROUTES } from "../utils/Routes";
 import { Mousewheel } from "swiper";

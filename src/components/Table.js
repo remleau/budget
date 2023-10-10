@@ -1,14 +1,25 @@
 import { memo } from "react";
-import { convertDate } from "../utils/fn";
-import useCurrency from "../hooks/useCurrency";
 import { NavLink } from "react-router-dom";
+
+import useCurrency from "../hooks/useCurrency";
+
+import { convertDate } from "../utils/fn";
 import { ROUTES } from "../utils/Routes";
 
-function Table({ expenses, columns }) {
+import TableFilters from "../components/TableFilters";
+import Pagination from "../components/Pagination";
+
+function Table({ expenses, setExpenses, columns }) {
 	const { convertPrice } = useCurrency();
 
 	return (
 		<div className="table">
+			{setExpenses && (
+				<div className="table-filters">
+					<TableFilters setExpenses={setExpenses} />
+				</div>
+			)}
+
 			<div className="table-columns">
 				{columns?.map((column) => (
 					<div className="table-column" key={column.header}>
@@ -23,11 +34,11 @@ function Table({ expenses, columns }) {
 						{expenses?.map((expense) => (
 							<div className="table-row" key={expense.id}>
 								<div className="table-row-content">
-									{column.accessorKey == "date" ? (
+									{column.accessorKey === "date" ? (
 										convertDate(expense[column.accessorKey])
-									) : column.accessorKey == "price" ? (
+									) : column.accessorKey === "price" ? (
 										convertPrice(expense[column.accessorKey])
-									) : column.accessorKey == "name" ? (
+									) : column.accessorKey === "name" ? (
 										<NavLink
 											to={ROUTES.EXPENSE.replace(":id", expense.id.toString())}
 										>
@@ -42,6 +53,12 @@ function Table({ expenses, columns }) {
 					</div>
 				))}
 			</div>
+
+			{setExpenses && (
+				<div className="table-paged">
+					<Pagination />
+				</div>
+			)}
 		</div>
 	);
 }
