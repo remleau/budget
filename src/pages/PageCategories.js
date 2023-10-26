@@ -1,4 +1,4 @@
-import { memo, useRef } from "react";
+import { memo, useRef, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import { ROUTES } from "../utils/Routes";
 import { Mousewheel } from "swiper";
@@ -10,15 +10,32 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import DynamicIcon from "../components/DynamicIcon";
 import Hero from "../components/Hero";
+import Table from "../components/Table";
 
 function PageCategories() {
 	const swiperRef = useRef(null);
-	const { categories } = useCategories();
+	const { categoriesTotal, categories } = useCategories();
 
 	const style = {
 		backgroundImage:
 			"url(https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)",
 	};
+
+	const columns = useMemo(
+		() => [
+			{
+				accessorKey: "categorie",
+				header: "Name",
+				size: 25,
+			},
+			{
+				accessorKey: "total",
+				header: "Total",
+				size: 25,
+			},
+		],
+		[]
+	);
 
 	return (
 		<div className="page categories">
@@ -60,6 +77,11 @@ function PageCategories() {
 						);
 					})}
 				</Swiper>
+			</section>
+			<section className="content">
+				<h3>Most used categories</h3>
+
+				<Table expenses={categoriesTotal} columns={columns} />
 			</section>
 		</div>
 	);

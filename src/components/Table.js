@@ -9,14 +9,14 @@ import { ROUTES } from "../utils/Routes";
 import TableFilters from "../components/TableFilters";
 import Pagination from "../components/Pagination";
 
-function Table({ expenses, setExpenses, columns }) {
+function Table({ expenses, setExpenses, columns, categories }) {
 	const { convertPrice } = useCurrency();
 
 	return (
 		<div className="table">
 			{setExpenses && (
 				<div className="table-filters">
-					<TableFilters setExpenses={setExpenses} />
+					<TableFilters setExpenses={setExpenses} categories={categories} />
 				</div>
 			)}
 
@@ -36,7 +36,8 @@ function Table({ expenses, setExpenses, columns }) {
 								<div className="table-row-content">
 									{column.accessorKey === "date" ? (
 										convertDate(expense[column.accessorKey])
-									) : column.accessorKey === "price" ? (
+									) : column.accessorKey === "price" ||
+									  column.accessorKey === "total" ? (
 										convertPrice(expense[column.accessorKey])
 									) : column.accessorKey === "name" ? (
 										<NavLink

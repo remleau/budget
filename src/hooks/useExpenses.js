@@ -2,7 +2,7 @@ import { useCallback, useState, useEffect } from "react";
 import { useGlobalContext } from "../utils/GlobalProvider";
 
 function useExpenses(props = { expenseId: 0, orderBy: "date" }) {
-	const { pb, setPaged, paged } = useGlobalContext();
+	const { pb, setPaged, paged, setTotalSavings } = useGlobalContext();
 
 	const [expense, setExpense] = useState(null);
 	const [expenses, setExpenses] = useState(null);
@@ -143,7 +143,11 @@ function useExpenses(props = { expenseId: 0, orderBy: "date" }) {
 					const result = await pb
 						.collection("expenses")
 						.getList(data.paged.page, data.paged.nbPerPage, {
-							filter: `date >= "${data.start.toISOString()}" && date <= "${data.end.toISOString()}"`,
+							filter: data.categories
+								? `date >= "${data.start.toISOString()}" && date <= "${data.end.toISOString()}" && categories ?~ "${
+										data.categories
+								  }"`
+								: `date >= "${data.start.toISOString()}" && date <= "${data.end.toISOString()}"`,
 						});
 
 					setPaged({
@@ -151,6 +155,10 @@ function useExpenses(props = { expenseId: 0, orderBy: "date" }) {
 						nbPerPage: paged.nbPerPage,
 						totalPages: result.totalPages,
 					});
+
+					setTotalSavings(
+						result?.items?.map((e) => e.price).reduce((a, b) => a + b, 0)
+					);
 
 					return setExpenses(result.items);
 				}

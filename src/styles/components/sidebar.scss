@@ -3,7 +3,7 @@
 	position: fixed;
 	right: 0;
 
-	padding: 3rem;
+	padding: 2.75rem;
 	margin-top: 2rem;
 
 	box-shadow: 3px 0px 10px -5px rgba(65, 71, 84, 0.4);
@@ -89,5 +89,9 @@
 
 	&-actions {
 		margin-top: 2.5rem;
+
+		.btn {
+			margin-top: 1rem;
+		}
 	}
 }

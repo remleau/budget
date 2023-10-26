@@ -1,7 +1,9 @@
 .categories {
 	.slider {
-		transform: translateY(-50px);
-		padding-left: 5rem;
+		&:first-of-type {
+			padding-left: 5rem;
+			transform: translateY(-50px);
+		}
 	}
 
 	.content {

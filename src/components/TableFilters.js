@@ -6,10 +6,10 @@ import useExpenses from "../hooks/useExpenses";
 import useCurrency from "../hooks/useCurrency";
 import { useGlobalContext } from "../utils/GlobalProvider";
 
-function TableFilters({ setExpenses }) {
+function TableFilters({ setExpenses, categories }) {
 	const { convertPrice } = useCurrency();
-	const { expenses, getExpenses, getExpensesByMonths } = useExpenses();
-	const { totalSavings, setTotalSavings, paged } = useGlobalContext();
+	const { expenses, getExpensesByMonths } = useExpenses();
+	const { totalSavings, paged } = useGlobalContext();
 
 	const currentDate = new Date();
 	const months = getMonths();
@@ -41,11 +41,8 @@ function TableFilters({ setExpenses }) {
 	}
 
 	useEffect(() => {
-		if (month.start === 13 || month.end === 13) {
-			getExpenses();
-		}
-
 		getExpensesByMonths({
+			categories: categories,
 			start: new Date(selectedYear, month.start, 1),
 			end: new Date(selectedYear, month.end, 0),
 			paged: { page: paged.page, nbPerPage: paged.nbPerPage },
@@ -54,8 +51,6 @@ function TableFilters({ setExpenses }) {
 
 	useEffect(() => {
 		setExpenses && setExpenses(expenses);
-
-		setTotalSavings(expenses?.map((e) => e.price).reduce((a, b) => a + b, 0));
 	}, [expenses]);
 
 	return (
@@ -64,15 +59,10 @@ function TableFilters({ setExpenses }) {
 				<div>
 					<select
 						value={month.start + 1}
-						onChange={(e) => {
-							setMonth({ start: +e.target.value - 1, end: +e.target.value });
-
-							if (e.target.value === "13") {
-								setMonth({ start: 13, end: 13 });
-							}
-						}}
+						onChange={(e) =>
+							setMonth({ start: +e.target.value - 1, end: +e.target.value })
+						}
 					>
-						<option value="13">-- Select Month --</option>
 						{months.map((month, index) => (
 							<option key={index} value={month.number}>
 								{month.name}

@@ -7,6 +7,8 @@ function useCategories(catId) {
 	const [categorie, setCategorie] = useState(null);
 	const [categories, setCategories] = useState(null);
 
+	const [categoriesTotal, setCategoriesTotal] = useState(null);
+
 	const addCategorie = useCallback(
 		async (values) => {
 			try {
@@ -90,6 +92,33 @@ function useCategories(catId) {
 		[pb]
 	);
 
+	const getMostUsedCategories = useCallback(async () => {
+		const categories = await pb
+			.collection("categories")
+			.getFullList({ $autoCancel: false });
+
+		const promises = categories?.map(async (c) => {
+			const expenses = await pb.collection("expenses").getFullList(
+				{
+					filter: `categories ?~ "${c.id}"`,
+				},
+				{ $autoCancel: false }
+			);
+
+			let total = expenses?.map((e) => e.price).reduce((a, b) => a + b, 0);
+
+			return { total: total, categorie: c.name };
+		});
+
+		Promise.all(promises).then((results) => {
+			setCategoriesTotal(results.sort((a, b) => b.total - a.total));
+		});
+	}, [pb]);
+
+	useEffect(() => {
+		getMostUsedCategories();
+	}, []);
+
 	useEffect(() => {
 		getCategories();
 
@@ -104,6 +133,8 @@ function useCategories(catId) {
 		categories,
 		categorie,
 		getCategorie,
+		getMostUsedCategories,
+		categoriesTotal,
 	};
 }
 

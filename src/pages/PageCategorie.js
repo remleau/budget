@@ -1,4 +1,4 @@
-import { memo, useEffect, useState, useMemo } from "react";
+import { memo, useEffect, useMemo } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { ROUTES } from "../utils/Routes";
 
@@ -10,21 +10,15 @@ import Table from "../components/Table";
 import DynamicIcon from "../components/DynamicIcon";
 import Hero from "../components/Hero";
 
-import useCurrency from "../hooks/useCurrency";
-
 function PageCategorie() {
 	const { id } = useParams();
 	const { categorie } = useCategories(id);
 	const { goals, getGoalsByCategories } = useGoals();
-	const { expenses, getExpensesByCategories } = useExpenses();
-	const { convertPrice } = useCurrency();
+	const { expenses, setExpenses } = useExpenses();
 
 	useEffect(() => {
-		getExpensesByCategories(id);
 		getGoalsByCategories(id);
 	}, [id, categorie]);
-
-	const total = expenses?.map((e) => e.price).reduce((a, b) => a + b, 0);
 
 	const style = {
 		backgroundImage: `url(${
@@ -104,6 +98,12 @@ function PageCategorie() {
 									>
 										<span>Add a goal</span>
 									</NavLink>
+									<NavLink
+										to={ROUTES.ADDEXPENSE + "?categories=" + id}
+										className={"btn add"}
+									>
+										<span>Add an expense</span>
+									</NavLink>
 								</div>
 							</div>
 						</div>
@@ -117,10 +117,14 @@ function PageCategorie() {
 					>
 						<div className="page-content-container-title">
 							<h3>Lastest expenses to the category</h3>
-							<h3>Total: {convertPrice(total)}</h3>
 						</div>
 
-						<Table expenses={expenses} columns={columns} />
+						<Table
+							setExpenses={setExpenses}
+							expenses={expenses}
+							columns={columns}
+							categories={categorie.id}
+						/>
 					</section>
 				</div>
 			</div>
